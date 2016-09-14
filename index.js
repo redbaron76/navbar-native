@@ -71,6 +71,17 @@ class NavbarNative extends Component {
         }
     }
 
+    _manageJustifyContentContainer() {
+        switch (true) {
+            case (this.hasBothBtn):
+                return { justifyContent : 'space-between' }
+            case (this.hasLeftBtn):
+                return { justifyContent : 'flex-start' }
+            case (this.hasRightBtn):
+                return { justifyContent : 'flex-end' }
+        }
+    }
+
     renderStatusBar() {
 
         const customStatusBarTintColor = this.props.statusBar.tintColor ?
@@ -210,7 +221,7 @@ class NavbarNative extends Component {
                 {this.renderStatusBar()}
                 <View style={[styles.navBar, this.props.style,]}>
                     {this.renderTitle()}
-                    <View style={[styles.navBarButtonContainer/*, flex-end, flex-start, space-between*/]}>
+                    <View style={[styles.navBarButtonContainer, this._manageJustifyContentContainer()]}>
                         {this.renderLeftButton()}
                         {this.renderRightButton()}
                     </View>

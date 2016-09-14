@@ -14,8 +14,6 @@ module.exports = {
         height: NAV_BAR_HEIGHT,
         position: 'relative',
         flexDirection: 'row',
-        // justifyContent: 'space-between',
-        // alignItems: 'stretch',
     },
     customTitle: {
         position: 'absolute',
@@ -31,9 +29,8 @@ module.exports = {
         top: 0,
         bottom: 0,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'stretch',
-        //backgroundColor: 'red',
+        // backgroundColor: 'red',
     },
     navBarMultiButtonContainer: {
         flexDirection: 'row',

@@ -1,61 +1,20 @@
 {
-  "_args": [
-    [
-      {
-        "name": null,
-        "raw": "../NavBarNative/",
-        "rawSpec": "../NavBarNative/",
-        "scope": null,
-        "spec": "/Users/fabio/Documents/LAVORI/PROGETTI/NavBarNative",
-        "type": "directory"
-      },
-      "/Users/fabio/Documents/LAVORI/PROGETTI/ReactNativeEmpty"
-    ]
-  ],
-  "_from": "../NavBarNative",
-  "_id": "navbar-native@1.0.0",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/navbar-native",
-  "_phantomChildren": {},
-  "_requested": {
-    "name": null,
-    "raw": "../NavBarNative/",
-    "rawSpec": "../NavBarNative/",
-    "scope": null,
-    "spec": "/Users/fabio/Documents/LAVORI/PROGETTI/NavBarNative",
-    "type": "directory"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "file:../NavBarNative",
-  "_shasum": "677bbb7f79e57db61785065d3a4280acde73fca6",
-  "_shrinkwrap": null,
-  "_spec": "../NavBarNative/",
-  "_where": "/Users/fabio/Documents/LAVORI/PROGETTI/ReactNativeEmpty",
-  "author": {
-    "email": "f.fumis@gmail.com",
-    "name": "Fabio Fumis",
-    "url": "https://github.com/redbaron76"
-  },
-  "dependencies": {
-    "react-native-vector-icons": "~2.1.0"
-  },
+  "name": "navbar-native",
+  "version": "1.0.0",
   "description": "a fully customizable navbar component for React-Native",
-  "devDependencies": {},
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
   "keywords": [
     "react",
     "native",
     "navbar"
   ],
-  "license": "ISC",
-  "main": "index.js",
-  "name": "navbar-native",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "scripts": {
-    "test": "test"
+  "dependencies": {
+    "react-native": ">= 0.16",
+    "react-native-vector-icons": "~2.1.0"
   },
-  "version": "1.0.0"
+  "author": "Fabio Fumis <f.fumis@gmail.com> (https://github.com/redbaron76)",
+  "license": "ISC"
 }
