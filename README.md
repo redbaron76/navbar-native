@@ -1,6 +1,8 @@
 # NavbarNative
 A **fully customizable** Navbar component for React-Native.
 
+![navbar-native demo](https://github.com/redbaron76/navbar-native/blob/master/navbar-native-intro.png)
+
 ## ACTUALLY TESTED ON iOS ONLY
 
 ### Content
