@@ -5,6 +5,7 @@ export function iOS(a, b) {
 }
 
 export const color = {
+    backgroundColor: '#ffffff',
     buttonColor: iOS('#0076FF', '#ffffff'),
     textColor: iOS('#333333', '#ffffff'),
 };

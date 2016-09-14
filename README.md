@@ -7,7 +7,8 @@ A **fully customizable** Navbar component for React-Native.
 
 ### Content
 - [Installation](#installation)
-- [Getting started](#getting started)
+- [Getting started](#getting-started)
+- [API](#api)
 
 ### Installation
 ```bash
@@ -22,7 +23,7 @@ After installing NavbarNative, in order to have **icons working**, please follow
 ### Getting started
 Basically, the components accepts a **title** prop and **left** and/or **right** objects (or array of objects) which describe each button that the navbar has to render in the specific position.
 
-```bash
+```js
 import React, {Component} from 'react';
 import { View } from 'react-native';
 
@@ -30,7 +31,7 @@ import styles from './styles';
 
 import NavbarNative from 'navbar-native';
 
-class ReactNativeEmpty extends Component {
+class ReactNativeProject extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -54,3 +55,25 @@ class ReactNativeEmpty extends Component {
     }
 }
 ```
+
+### API
+- **title** - (String opt.) - The title string
+- **tintColor** - (String def. '#ffffff') - NavigationBar's tint color
+- **statusBar** - (Object opt.):
+  - **style** - ('light-content' or 'default') - Style of statusBar
+  - **hidden** - (Boolean)
+  - **tintColor** - (String) - Status bar tint color
+  - **hideAnimation** - ('fade', 'slide', 'none') - Type of statusBar hide animation
+  - **showAnimation** - ('fade', 'slide', 'none') - Type of statusBar show animation
+- **left / right** - (Object or Array of Objects):
+  - **icon** - (String opt.) - Vector Icon's icon name
+  - **iconFamily** - (String def. Ionicons) - Vector Icon's icon library
+  - **iconPos** - ('left' or 'right' def. left/right position) - Icon's position towards the label
+  - **iconSize** - (Number def. 30 ios - 28 android) - Icon's size
+  - **iconColor** - (String def. '#0076FF' ios - '#FFFFFF' android) - Icon's color
+  - **label** - (String opt.) - Button's label
+  - **onPress** - (Function) - onPress function handler
+  - **role** - (String opt. - 'back' | 'close' | 'login' | 'menu') - Button's pre-defined aspect
+  - **style** - (Object opt.) - Button's override styles
+- **style** - (Object) - Custom styles for the navbar
+- **user** - (Object, Bool) - Authenticated user
