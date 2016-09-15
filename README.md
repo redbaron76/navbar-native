@@ -1,9 +1,10 @@
 # NavbarNative
 A **fully customizable** Navbar component for React-Native.
+#### It works for both iOS and Android!
 
 ![navbar-native-intro](https://cloud.githubusercontent.com/assets/1061849/18530527/3bdab2b6-7ad2-11e6-95e4-1774e625080d.png)
 
-## ACTUALLY TESTED ON iOS ONLY
+![navbar-native-intro-android](https://cloud.githubusercontent.com/assets/1061849/18553248/0970cbd8-7b60-11e6-8b72-ec91f4d98671.png)
 
 ### Content
 - [Installation](#installation)
@@ -22,6 +23,11 @@ After installing NavbarNative, in order to have **icons working**, please follow
 
 ### Getting started
 Basically, the components accepts a **title** prop and **left** and/or **right** objects (or array of objects) which describe each button that the navbar has to render in the specific position.
+
+#### Using icons
+In order to use the correct set of icons, please use **ios-** prefix in _icon_ prop name for iOS and **md-** prefix for Android.
+
+The following chunk of code shows a typical **iOS** NavbarNative usage:
 
 ```js
 import React, {Component} from 'react';

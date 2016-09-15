@@ -1,17 +1,14 @@
-import { color, iOS } from './utils';
-
-const NAV_BAR_HEIGHT = 44;
-const STATUS_BAR_HEIGHT = 20;
+import { color, size } from './utils';
 
 module.exports = {
     navBarContainer: {
         backgroundColor: color.backgroundColor,
     },
     statusBar: {
-        height: STATUS_BAR_HEIGHT,
+        height: size.statusBarHeight,
     },
     navBar: {
-        height: NAV_BAR_HEIGHT,
+        height: size.navBarHeight,
         position: 'relative',
         flexDirection: 'row',
     },
@@ -24,8 +21,8 @@ module.exports = {
     },
     navBarButtonContainer: {
         position: 'absolute',
-        left: iOS(8, 0),
-        right: iOS(8, 0),
+        left: size.navBarButtonContainer.left,
+        right: size.navBarButtonContainer.right,
         top: 0,
         bottom: 0,
         flexDirection: 'row',
@@ -35,7 +32,7 @@ module.exports = {
     navBarMultiButtonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'stretch',
+        alignItems: 'center',
         // backgroundColor: 'red',
     },
     navBarButtonWrapper: {
@@ -52,7 +49,7 @@ module.exports = {
         fontSize: 17,
         letterSpacing: 0.5,
         color: color.buttonColor,
-        marginBottom: iOS(2, 0),
+        marginBottom: size.navBarButtonText.marginBottom,
         // backgroundColor: 'purple',
     },
     navBarTitleContainer: {
@@ -70,9 +67,10 @@ module.exports = {
         letterSpacing: 0.5,
         color: color.textColor,
         fontWeight: '500',
+        marginLeft: size.navBarTitleText.marginLeft,
     },
     iconStyle: {
-        marginTop: iOS(3, 0),
+        marginTop: size.iconStyle.marginTop,
         color: color.buttonColor,
     }
 };

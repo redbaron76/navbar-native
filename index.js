@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, View, Platform, StatusBar } from 'react-native';
 
-import Button from './button';
 import Icon from './icon';
+import Button from './button';
 import styles from './styles';
+import { isIOS, iOS, iconName } from './utils';
 
 const BACK = 'back';
 const CLOSE = 'close';
@@ -22,10 +23,11 @@ class NavbarNative extends Component {
         this.hasLeftBtn = !!props.left;
         this.hasRightBtn = !!props.right;
         this.hasBothBtn = this.hasLeftBtn && this.hasRightBtn;
+        this.iconPrefix = isIOS() ? 'ios' : 'md';
     }
 
     _setupStatusBar(data) {
-        if (Platform.OS === 'ios') {
+        if (isIOS()) {
             if (data.style) {
                 StatusBar.setBarStyle(data.style);
             }
@@ -36,14 +38,6 @@ class NavbarNative extends Component {
             StatusBar.showHideTransition = animation;
             StatusBar.hidden = data.hidden;
         }
-    }
-
-    _isOs(os) {
-        return Platform.OS == os;
-    }
-
-    _getIconSize() {
-        return (this._isOs('ios')) ? 30 : 28;
     }
 
     _managePress(props) {
@@ -88,7 +82,7 @@ class NavbarNative extends Component {
             { backgroundColor: this.props.statusBar.tintColor } : null;
 
         switch (true) {
-            case (this._isOs('ios') && !this.props.statusBar.hidden):
+            case (isIOS() && !this.props.statusBar.hidden):
                 return <View style={[styles.statusBar, customStatusBarTintColor,]} />;
             default:
                 return null;
@@ -97,12 +91,14 @@ class NavbarNative extends Component {
 
     renderTitle() {
         switch (true) {
-            case (!!this.props.title):
+            case (isIOS() && !!this.props.title):
                 return (
                     <View style={styles.navBarTitleContainer}>
                         <Text style={styles.navBarTitleText}>{this.props.title}</Text>
                     </View>
                 );
+            case (!isIOS() && !!this.props.title):
+                return <Text style={styles.navBarTitleText}>{this.props.title}</Text>;
             default:
                 return null;
         }
@@ -112,26 +108,25 @@ class NavbarNative extends Component {
         if ((!props.iconPos && labelPos == btnPos) || props.iconPos == labelPos) {
 
             const family = (props.iconFamily) ? props.iconFamily : 'Ionicons';
-            const size = (props.iconSize) ? props.iconSize : this._getIconSize();
 
             switch (true) {
                 case (props.role == MENU):
                     switch (true) {
                         case (!!this.props.user):
-                            const icon = (props.icon) ? props.icon : 'ios-menu';
-                            return <Icon name={icon} family={family} size={size} color={props.iconColor}/>;
+                            const icon = (props.icon) ? props.icon : iconName(this.iconPrefix, 'menu');
+                            return <Icon name={icon} family={family} color={props.iconColor}/>;
                         default:
                             return null;
                     }
                 case (props.role == CLOSE):
-                    const iconClose = (props.icon) ? props.icon : 'ios-close';
-                    return <Icon name={iconClose} family={family} size={size} color={props.iconColor}/>;
+                    const iconClose = (props.icon) ? props.icon : iconName(this.iconPrefix, 'close');
+                    return <Icon name={iconClose} family={family} color={props.iconColor}/>;
                 case (props.role == BACK):
-                    const iconBack = (props.icon) ? props.icon : 'ios-arrow-back';
-                    return <Icon name={iconBack} family={family} size={size} color={props.iconColor}/>;
+                    const iconBack = (props.icon) ? props.icon : iconName(this.iconPrefix, 'arrow-back');
+                    return <Icon name={iconBack} family={family} color={props.iconColor}/>;
                 case (!!props.icon):
                     console.log(props.iconStyle);
-                    return <Icon name={props.icon} family={family} size={size} color={props.iconColor}/>;
+                    return <Icon name={props.icon} family={family} color={props.iconColor}/>;
                 default:
                     return null;
             }
@@ -149,6 +144,12 @@ class NavbarNative extends Component {
                         return props.loginLabel || 'Login';
                 }
             case (props.role == BACK):
+                switch (true) {
+                    case (isIOS() && !!props.label):
+                        return props.label;
+                    default:
+                        return null;
+                }
                 return props.label || 'Back';
             case (!!props.label):
                 return props.label;
@@ -178,7 +179,7 @@ class NavbarNative extends Component {
     renderLeftButton() {
         const left = this.props.left;
         switch (true) {
-            case (Array.isArray(left)):
+            case (isIOS() && Array.isArray(left)):
                 return (
                     <View style={styles.navBarMultiButtonContainer}>
                         {left.map((btn, i) => {
@@ -186,8 +187,24 @@ class NavbarNative extends Component {
                         })}
                     </View>
                 );
-            case (typeof left === 'object'):
+            case (isIOS() && typeof left === 'object'):
                 return this.renderButton(left, 'left', 'left', 'right', 'left');
+            case (!iOS() && Array.isArray(left)):
+                return (
+                    <View style={styles.navBarMultiButtonContainer}>
+                        {left.map((btn, i) => {
+                            return this.renderButton(btn, 'left', 'left', 'right', 'left', i);
+                        })}
+                        {this.renderTitle()}
+                    </View>
+                );
+            case (!isIOS() && typeof left === 'object'):
+                return (
+                    <View style={styles.navBarMultiButtonContainer}>
+                        {this.renderButton(left, 'left', 'left', 'right', 'left')}
+                        {this.renderTitle()}
+                    </View>
+                );
             default:
                 return null;
         }
@@ -216,11 +233,13 @@ class NavbarNative extends Component {
         const customTintColor = this.props.tintColor ?
             { backgroundColor: this.props.tintColor } : null;
 
+        const renderTitle = isIOS() ? this.renderTitle() : null;
+
         return (
             <View style={[styles.navBarContainer, customTintColor]}>
                 {this.renderStatusBar()}
                 <View style={[styles.navBar, this.props.style,]}>
-                    {this.renderTitle()}
+                    {renderTitle}
                     <View style={[styles.navBarButtonContainer, this._manageJustifyContentContainer()]}>
                         {this.renderLeftButton()}
                         {this.renderRightButton()}

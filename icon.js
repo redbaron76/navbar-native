@@ -9,6 +9,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 
 import styles from './styles';
+import { size } from './utils';
 
 export default class Icon extends Component {
 
@@ -45,7 +46,7 @@ export default class Icon extends Component {
         return(
             <this.Icon
                 name={this.props.name}
-                size={this.props.size}
+                size={size.iconSize}
                 style={[styles.iconStyle, color]}
             />
         );
