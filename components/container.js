@@ -6,57 +6,35 @@ import styles from '../styles';
 
 export default class Container extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this._parseContent();
-    }
-
-    _parseContent() {
-        this.children = [];
-        this.hasNavbar = false;
-        React.Children.forEach(this.props.children, (child, i) => {
-            switch (true) {
-                case (child && child.type == Navbar):
-                    this.hasNavbar = true;
-                    this.children.unshift(child);
-                    break;
-                default:
-                    this.children.push(child);
+    renderNavbar() {
+        const navbar = React.Children.map(this.props.children, (child) => {
+            if (child.type == Navbar) {
+                return child;
             }
         });
-    }
-
-    renderNavbar() {
-        if (this.hasNavbar) {
-            const navbar = this.children[0];
-            this.children.shift();
-            return navbar;
-        }
-        return null;
+        return (navbar) ? navbar : null;
     }
 
     renderContent() {
         return (
             <View style={styles.contentContainer}>
-                {this.children.map((child) => {
-                    return child;
+                {React.Children.map(this.props.children, (child) => {
+                    if (child.type !== Navbar) {
+                        return child;
+                    }
                 })}
             </View>
         );
     }
 
     render() {
+        console.log('container render');
         return (
             <View key="mainContainer" style={[styles.mainContainer, this.props.style]}>
                 {this.renderNavbar()}
                 {this.renderContent()}
             </View>
         );
-    }
-
-    componentWillUpdate() {
-        this._parseContent();
     }
 
 }
