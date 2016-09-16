@@ -8,8 +8,10 @@ A **fully customizable** Navbar component for React-Native.
 
 ### Content
 - [Installation](#installation)
+- [Exported components](#exported-components)
 - [Getting started](#getting-started)
-- [API](#api)
+- [Container API](#container-api)
+- [Navbar API](#navbar-api)
 
 ### Installation
 ```bash
@@ -21,8 +23,14 @@ This package depends on the beautiful [Vector Icons for React Native](https://gi
 
 After installing NavbarNative, in order to have **icons working**, please follow instructions about [HOW TO INSTALL AND LINK VECTOR ICONS](https://github.com/oblador/react-native-vector-icons) in your project.
 
+### Exported components
+This package exports two main components:
+
+- **Container** - a container component to use as the first component in a __render()__ method. It accepts the "Navbar" component and the rest of the page content.
+- **Navbar** - the components which generates the bar on top.
+
 ### Getting started
-Basically, the components accepts a **title** prop and **left** and/or **right** objects (or array of objects) which describe each button that the navbar has to render in the specific position.
+Basically, the Navbar component accepts a **title** prop and **left** and/or **right** objects (or array of objects) which describe each button that the navbar has to render in the specific position.
 
 #### Using icons
 In order to use the correct set of icons, please use **ios-** prefix in _icon_ prop name for iOS and **md-** prefix for Android.
@@ -30,18 +38,16 @@ In order to use the correct set of icons, please use **ios-** prefix in _icon_ p
 The following chunk of code shows a typical **iOS** NavbarNative usage:
 
 ```js
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 
-import styles from './styles';
-
-import NavbarNative from 'navbar-native';
+import { Container, Navbar } from 'navbar-native';
 
 class ReactNativeProject extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <NavbarNative
+            <Container>
+                <Navbar
                     title={"Navbar Native"}
                     left={{
                         icon: "ios-arrow-back",
@@ -56,13 +62,17 @@ class ReactNativeProject extends Component {
                         onPress: () => {alert('Toggle menu!')}
                     }]}
                 />
-            </View>
+                ... other stuff ...
+            </Container>
         );
     }
 }
 ```
 
-### API
+### Container API
+- **style** - (Object) - Custom styles for the container
+
+### Navbar API
 - **title** - (String opt.) - The title string
 - **tintColor** - (String def. '#ffffff') - NavigationBar's tint color
 - **statusBar** - (Object opt.):

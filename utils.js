@@ -36,7 +36,8 @@ export const size = {
 }
 
 export const color = {
-    backgroundColor: iOS('#ffffff', '#757575'),
+    bgNavbarColor: iOS('#efeff4', '#757575'),
+    bgContentColor: iOS('#ffffff', '#ffffff'),
     buttonColor: iOS('#0076FF', '#ffffff'),
     textColor: iOS('#333333', '#ffffff'),
 };

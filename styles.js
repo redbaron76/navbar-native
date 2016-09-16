@@ -1,8 +1,15 @@
 import { color, size } from './utils';
 
 module.exports = {
+    mainContainer: {
+        flex: 1,
+    },
+    contentContainer: {
+        flex: 1,
+        backgroundColor: color.bgContentColor,
+    },
     navBarContainer: {
-        backgroundColor: color.backgroundColor,
+        backgroundColor: color.bgNavbarColor,
     },
     statusBar: {
         height: size.statusBarHeight,
