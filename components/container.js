@@ -28,7 +28,6 @@ export default class Container extends Component {
     }
 
     render() {
-        console.log('container render');
         return (
             <View key="mainContainer" style={[styles.mainContainer, this.props.style]}>
                 {this.renderNavbar()}
