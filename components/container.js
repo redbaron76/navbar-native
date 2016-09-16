@@ -9,23 +9,22 @@ export default class Container extends Component {
     constructor(props) {
         super(props);
 
-        this.hasNavbar = false;
-        this.children = this._parseContent();
+        this._parseContent();
     }
 
     _parseContent() {
-        const children = [];
+        this.children = [];
+        this.hasNavbar = false;
         React.Children.forEach(this.props.children, (child, i) => {
             switch (true) {
                 case (child && child.type == Navbar):
                     this.hasNavbar = true;
-                    children.unshift(child);
+                    this.children.unshift(child);
                     break;
                 default:
-                    children.push(child);
+                    this.children.push(child);
             }
         });
-        return children;
     }
 
     renderNavbar() {
@@ -49,11 +48,15 @@ export default class Container extends Component {
 
     render() {
         return (
-            <View style={[styles.mainContainer, this.props.style]}>
+            <View key="mainContainer" style={[styles.mainContainer, this.props.style]}>
                 {this.renderNavbar()}
                 {this.renderContent()}
             </View>
         );
+    }
+
+    componentWillUpdate() {
+        this._parseContent();
     }
 
 }
