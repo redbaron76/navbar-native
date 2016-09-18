@@ -75,8 +75,6 @@ class ReactNativeProject extends Component {
 
 ![image_list](https://cloud.githubusercontent.com/assets/1061849/18619404/6b15bb58-7dfb-11e6-917d-9c3ca6547f4f.png)
 
-
-
 You can also use a **remote** or **local** image instead of the text title:
 
 ```js
@@ -115,6 +113,54 @@ class ReactNativeEmpty extends Component {
 }
 ```
 
+### Image as background
+
+![image-background](https://cloud.githubusercontent.com/assets/1061849/18619959/0e4003b2-7e09-11e6-9ec5-d88a43b0ed2c.png)
+
+Images can be used in **background** also:
+
+```js
+class ReactNativeEmpty extends Component {
+    render() {
+        return (
+            <Container type="list" data={["first", "second", "third"]}>
+                <Navbar
+                    user={true}
+                    title={"Navbar Native"}
+                    titleColor="white"
+                    imageBackground={{
+                        source:'https://facebook.github.io/react/img/logo_og.png',
+                        type: 'remote',
+                        resizeMode: 'cover'
+                    }}
+                    statusBar={{
+                        style: "light-content",
+                        hideAnimation: Navbar.FADE,
+                        showAnimation: Navbar.SLIDE,
+                    }}
+                    left={{
+                        icon: "ios-arrow-back",
+                        iconColor: "white",
+                        label: "Back",
+                        onPress: () => {alert('Go back!')},
+                        style:{color: 'white'}
+                    }}
+                    right={[{
+                        icon: "ios-search",
+                        iconColor: "white",
+                        onPress: () => {alert('Search!')}
+                    },{
+                        icon: "ios-menu",
+                        iconColor: "white",
+                        onPress: () => {alert('Toggle menu!')}
+                    }]}
+                />
+            </Container>
+        );
+    }
+}
+```
+
 ### Container API
 - **data** - (Array of strings or Array of Objects) - data source for ListView
 - **row** - (React component opt.) - Component that renders single roe element in ListView
@@ -123,12 +169,18 @@ class ReactNativeEmpty extends Component {
 
 ### Navbar API
 - **title** - (String opt.) - The title string
-- **tintColor** - (String def. '#ffffff') - NavigationBar's tint color
+- **titleColor** - (String opt.) - The title string color
+- **tintColor** - (String def. '#ffffff') - NavigationBar's background tint color
 - **image** - (Object opt.) - Local/remote image instead of the title
   - **source** - (String) - Local/remote image location
   - **type** - ('local' or 'remote' def. 'local') - Origin of the image
   - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
   - **style** - (Object opt.) - Additional styles for image title
+- **imageBackground** - (Object opt.) - Local/remote image in navbar background
+  - **source** - (String) - Local/remote image location
+  - **type** - ('local' or 'remote' def. 'local') - Origin of the image
+  - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
+  - **style** - (Object opt.) - Additional styles for image background  
 - **statusBar** - (Object opt.):
   - **style** - ('light-content' or 'default') - Style of statusBar
   - **hidden** - (Boolean)

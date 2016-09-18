@@ -9,6 +9,7 @@ module.exports = {
         backgroundColor: color.bgContentColor,
     },
     navBarContainer: {
+        position: 'relative',
         backgroundColor: color.bgNavbarColor,
     },
     statusBar: {
@@ -57,6 +58,7 @@ module.exports = {
         letterSpacing: 0.5,
         color: color.buttonColor,
         marginBottom: size.navBarButtonText.marginBottom,
+        backgroundColor: 'transparent',
         // backgroundColor: 'purple',
     },
     navBarTitleContainer: {
@@ -75,6 +77,7 @@ module.exports = {
         color: color.textColor,
         fontWeight: '500',
         marginLeft: size.navBarTitleText.marginLeft,
+        backgroundColor: 'transparent',
     },
     listRowDefault: {
         row: {
@@ -96,5 +99,17 @@ module.exports = {
     iconStyle: {
         marginTop: size.iconStyle.marginTop,
         color: color.buttonColor,
+        backgroundColor: 'transparent',
+    },
+    imageTitle: {
+        width: size.navBarHeight,
+        height: size.navBarHeight,
+    },
+    imageBackground: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
     }
 };

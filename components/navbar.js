@@ -89,19 +89,19 @@ export default class Navbar extends Component {
         }
     }
 
-    _getImageTitleSource() {
+    _getImageTitleSource(prop) {
         switch (true) {
-            case (this.props.image.type == 'remote'):
-                return {uri: this.props.image.source};
-            case (this.props.image && this.props.image.type == 'local'):
+            case (prop.type == 'remote'):
+                return {uri: prop.source};
+            case (prop.type == 'local'):
             default:
-                return require(this.props.image.source);
+                return require(prop.source);
         }
     }
 
     renderImage() {
         const image = <Image
-            source={this._getImageTitleSource()}
+            source={this._getImageTitleSource(this.props.image)}
             resizeMode={this.props.image.resizeMode || 'cover'}
             style={[styles.imageTitie, this.props.image.style]}
         />;
@@ -123,11 +123,11 @@ export default class Navbar extends Component {
             case (isIOS() && !!this.props.title):
                 return (
                     <View style={styles.navBarTitleContainer}>
-                        <Text style={styles.navBarTitleText}>{this.props.title}</Text>
+                        <Text style={[styles.navBarTitleText, {color: this.props.titleColor}]}>{this.props.title}</Text>
                     </View>
                 );
             case (!isIOS() && !!this.props.title):
-                return <Text style={styles.navBarTitleText}>{this.props.title}</Text>;
+                return <Text style={[styles.navBarTitleText, {color: this.props.titleColor}]}>{this.props.title}</Text>;
             case (!!this.props.image):
                 return this.renderImage();
             default:
@@ -194,7 +194,8 @@ export default class Navbar extends Component {
                 key={"btn_" + icon2_2 + i}
                 btnLeft={icon2_2 == 'left'}
                 btnRight={icon2_2 == 'right'}
-                style={[styles.navBarButtonWrapper, props.style]}
+                style={styles.navBarButtonWrapper}
+                customStyle={props.style}
                 iconPos={props.iconPos}
                 iconStyle={[props.iconStyle]}
                 onPress={this._managePress(props)}
@@ -258,6 +259,21 @@ export default class Navbar extends Component {
         }
     }
 
+    renderBackgroundImage() {
+        switch (true) {
+            case (!!this.props.imageBackground && !!this.props.imageBackground.source):
+                return (
+                    <Image
+                        source={this._getImageTitleSource(this.props.imageBackground)}
+                        resizeMode={this.props.imageBackground.resizeMode || 'cover'}
+                        style={[styles.imageBackground, this.props.imageBackground.style]}
+                    />
+                );
+            default:
+                return null;
+        }
+    }
+
     render() {
 
         const customTintColor = this.props.tintColor ?
@@ -268,6 +284,7 @@ export default class Navbar extends Component {
         return (
             <View style={[styles.navBarContainer, customTintColor]}>
                 {this.renderStatusBar()}
+                {this.renderBackgroundImage()}
                 <View style={[styles.navBar, this.props.style,]}>
                     {renderTitle}
                     <View style={[styles.navBarButtonContainer, this._manageJustifyContentContainer()]}>
@@ -341,10 +358,12 @@ Navbar.propTypes = {
         Navbar.buttonShape,
     ]),
     image: PropTypes.shape(Navbar.imagePropTypes),
+    imageBackground: PropTypes.shape(Navbar.imagePropTypes),
     statusBar: PropTypes.shape(Navbar.statusBarShape),
     style: PropTypes.object,
     tintColor: PropTypes.string,
     title: PropTypes.string,
+    titleColor: PropTypes.string,
     user: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool

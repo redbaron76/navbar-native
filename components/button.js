@@ -33,7 +33,8 @@ export default class Button extends Component {
                         case (child && typeof child == 'string'):
                             return <Text style={[
                                 styles.navBarButtonText,
-                                this._setIconLabelMargins(this.props)
+                                this._setIconLabelMargins(this.props),
+                                this.props.customStyle
                             ]}>
                                 {child}
                             </Text>;
@@ -92,8 +93,6 @@ export default class Button extends Component {
     }
 
     _setIconLabelMargins(props) {
-
-        // console.log(this.hasLabel, this.hasIcon);
 
         switch (true) {
             case (this.props.btnLeft):
@@ -162,5 +161,6 @@ export default class Button extends Component {
         btnLeft: PropTypes.bool,
         btnRight: PropTypes.bool,
         onPress: PropTypes.func,
+        customStyle: PropTypes.object,
     };
 };
