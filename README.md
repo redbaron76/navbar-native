@@ -12,6 +12,7 @@ A **fully customizable** Navbar component for React-Native.
 - [Getting started](#getting-started)
 - [Container API](#container-api)
 - [Navbar API](#navbar-api)
+- [Demo](#demo)
 
 ### Installation
 ```bash
@@ -93,3 +94,9 @@ class ReactNativeProject extends Component {
   - **style** - (Object opt.) - Button's override styles
 - **style** - (Object) - Custom styles for the navbar
 - **user** - (Object, Bool) - Authenticated user
+
+### Demo
+
+Check an advanced implementation [HERE](https://github.com/redbaron76/MeteorNative)
+
+![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18615649/5f3c930a-7dac-11e6-9d52-eef4b56b8d21.gif)
