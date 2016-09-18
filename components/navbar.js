@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View, Platform, StatusBar } from 'react-native';
+import { Image, Text, View, Platform, StatusBar } from 'react-native';
 
 import Icon from './icon';
 import Button from './button';
@@ -79,13 +79,42 @@ export default class Navbar extends Component {
     renderStatusBar() {
 
         const customStatusBarTintColor = this.props.statusBar.tintColor ?
-            { backgroundColor: this.props.statusBar.tintColor } : null;
+        { backgroundColor: this.props.statusBar.tintColor } : null;
 
         switch (true) {
             case (isIOS() && !this.props.statusBar.hidden):
                 return <View style={[styles.statusBar, customStatusBarTintColor,]} />;
             default:
                 return null;
+        }
+    }
+
+    _getImageTitleSource() {
+        switch (true) {
+            case (this.props.image.type == 'remote'):
+                return {uri: this.props.image.source};
+            case (this.props.image && this.props.image.type == 'local'):
+            default:
+                return require(this.props.image.source);
+        }
+    }
+
+    renderImage() {
+        const image = <Image
+            source={this._getImageTitleSource()}
+            resizeMode={this.props.image.resizeMode || 'cover'}
+            style={[styles.imageTitie, this.props.image.style]}
+        />;
+
+        switch (true) {
+            case (isIOS()):
+                return (
+                    <View style={styles.navBarTitleContainer}>
+                        {image}
+                    </View>
+                );
+            default:
+                return image;
         }
     }
 
@@ -99,6 +128,8 @@ export default class Navbar extends Component {
                 );
             case (!isIOS() && !!this.props.title):
                 return <Text style={styles.navBarTitleText}>{this.props.title}</Text>;
+            case (!!this.props.image):
+                return this.renderImage();
             default:
                 return null;
         }
@@ -230,7 +261,7 @@ export default class Navbar extends Component {
     render() {
 
         const customTintColor = this.props.tintColor ?
-            { backgroundColor: this.props.tintColor } : null;
+        { backgroundColor: this.props.tintColor } : null;
 
         const renderTitle = isIOS() ? this.renderTitle() : null;
 
@@ -276,6 +307,13 @@ export default class Navbar extends Component {
         style: PropTypes.object,
     };
 
+    static imagePropTypes = {
+        source: PropTypes.string,
+        type: PropTypes.oneOf(['local', 'remote']),
+        resizeMode: PropTypes.oneOf(['cover', 'contain', 'stretch', 'repeat', 'center']),
+        style: PropTypes.object
+    };
+
     static buttonShape = PropTypes.shape(Navbar.buttonPropTypes);
     static arrayOfButtons = PropTypes.arrayOf(Navbar.buttonShape);
 
@@ -302,6 +340,7 @@ Navbar.propTypes = {
         Navbar.arrayOfButtons,
         Navbar.buttonShape,
     ]),
+    image: PropTypes.shape(Navbar.imagePropTypes),
     statusBar: PropTypes.shape(Navbar.statusBarShape),
     style: PropTypes.object,
     tintColor: PropTypes.string,

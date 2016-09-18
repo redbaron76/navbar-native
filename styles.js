@@ -76,6 +76,23 @@ module.exports = {
         fontWeight: '500',
         marginLeft: size.navBarTitleText.marginLeft,
     },
+    listRowDefault: {
+        row: {
+            flexDirection:'row',
+            alignItems: 'center',
+            justifyContent:'flex-start',
+            paddingTop: 18,
+            paddingBottom: 18,
+            paddingLeft: 8,
+            paddingRight: 8,
+            borderBottomWidth: 1,
+            borderBottomColor: color.borderColor
+        },
+        text: {
+            flex: 1,
+            fontSize: 17
+        }
+    },
     iconStyle: {
         marginTop: size.iconStyle.marginTop,
         color: color.buttonColor,

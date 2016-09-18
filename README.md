@@ -10,6 +10,7 @@ A **fully customizable** Navbar component for React-Native.
 - [Installation](#installation)
 - [Exported components](#exported-components)
 - [Getting started](#getting-started)
+- [Images as title](#image-as-title)
 - [Container API](#container-api)
 - [Navbar API](#navbar-api)
 - [Demo](#demo)
@@ -70,12 +71,64 @@ class ReactNativeProject extends Component {
 }
 ```
 
+### Image as a title
+
+![image_list](https://cloud.githubusercontent.com/assets/1061849/18619404/6b15bb58-7dfb-11e6-917d-9c3ca6547f4f.png)
+
+
+
+You can also use a **remote** or **local** image instead of the text title:
+
+```js
+class ReactNativeEmpty extends Component {
+    render() {
+        return (
+            <Container type="list" data={["first", "second", "third"]}>
+                <Navbar
+                    user={true}
+                    image={{
+                        source:'https://facebook.github.io/react/img/logo_og.png',
+                        type: 'remote',
+                        resizeMode: 'cover'
+                    }}
+                    statusBar={{
+                        style: "default",
+                        hideAnimation: Navbar.FADE,
+                        showAnimation: Navbar.SLIDE,
+                    }}
+                    left={{
+                        icon: "ios-arrow-back",
+                        label: "Back",
+                        onPress: () => {alert('Go back!')}
+                    }}
+                    right={[{
+                        icon: "ios-search",
+                        onPress: () => {alert('Search!')}
+                    },{
+                        icon: "ios-menu",
+                        onPress: () => {alert('Toggle menu!')}
+                    }]}
+                />
+            </Container>
+        );
+    }
+}
+```
+
 ### Container API
-- **style** - (Object) - Custom styles for the container
+- **data** - (Array of strings or Array of Objects) - data source for ListView
+- **row** - (React component opt.) - Component that renders single roe element in ListView
+- **style** - (Object) - Custom styles for the container,
+- **type** - ('scroll' or 'list' def. 'scroll') - How to render Container children content
 
 ### Navbar API
 - **title** - (String opt.) - The title string
 - **tintColor** - (String def. '#ffffff') - NavigationBar's tint color
+- **image** - (Object opt.) - Local/remote image instead of the title
+  - **source** - (String) - Local/remote image location
+  - **type** - ('local' or 'remote' def. 'local') - Origin of the image
+  - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
+  - **style** - (Object opt.) - Additional styles for image title
 - **statusBar** - (Object opt.):
   - **style** - ('light-content' or 'default') - Style of statusBar
   - **hidden** - (Boolean)
