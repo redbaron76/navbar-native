@@ -1,6 +1,6 @@
 import { color, size } from './utils';
 
-module.exports = {
+export default styles = {
     mainContainer: {
         flex: 1,
     },
@@ -111,5 +111,5 @@ module.exports = {
         right: 0,
         bottom: 0,
         left: 0,
-    }
+    },
 };

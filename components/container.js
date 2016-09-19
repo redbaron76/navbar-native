@@ -11,7 +11,7 @@ export default class Container extends Component {
 
     renderNavbar() {
         const navbar = React.Children.map(this.props.children, (child) => {
-            if (child.type == Navbar) {
+            if (child && child.type == Navbar) {
                 return child;
             }
         });
@@ -48,7 +48,7 @@ export default class Container extends Component {
             case (this.props.type == SCROLL):
             default:
                 return (
-                    <ScrollView {...this.props}>
+                    <ScrollView contentContainerStyle={styles.mainContainer}>
                         {children}
                     </ScrollView>
                 );
@@ -57,7 +57,7 @@ export default class Container extends Component {
 
     renderContent() {
         const children = React.Children.map(this.props.children, (child) => {
-            if (child.type !== Navbar) {
+            if (child && child.type !== Navbar) {
                 return child;
             }
         });
@@ -70,7 +70,7 @@ export default class Container extends Component {
 
     render() {
         return (
-            <View key="mainContainer" style={[styles.mainContainer, this.props.style]}>
+            <View style={[styles.mainContainer, this.props.style]}>
                 {this.renderNavbar()}
                 {this.renderContent()}
             </View>

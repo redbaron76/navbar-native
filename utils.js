@@ -45,7 +45,7 @@ export const size = {
 
     navBarHeight: 44,
     statusBarHeight: 20,
-}
+};
 
 export const color = {
     bgNavbarColor: iOS('#efeff4', '#757575'),
