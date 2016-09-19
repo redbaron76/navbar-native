@@ -4,7 +4,7 @@ import { Image, Text, View, Platform, StatusBar } from 'react-native';
 import Icon from './icon';
 import Button from './button';
 import styles from '../styles';
-import { isIOS, iOS, iconName } from '../utils';
+import { isIOS, iOS, iconName, fixIconName } from '../utils';
 
 const BACK = 'back';
 const CLOSE = 'close';
@@ -144,19 +144,19 @@ export default class Navbar extends Component {
                 case (props.role == MENU):
                     switch (true) {
                         case (!!this.props.user):
-                            const icon = (props.icon) ? props.icon : iconName(this.iconPrefix, 'menu');
+                            const icon = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'menu');
                             return <Icon name={icon} family={family} color={props.iconColor}/>;
                         default:
                             return null;
                     }
                 case (props.role == CLOSE):
-                    const iconClose = (props.icon) ? props.icon : iconName(this.iconPrefix, 'close');
+                    const iconClose = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'close');
                     return <Icon name={iconClose} family={family} color={props.iconColor}/>;
                 case (props.role == BACK):
-                    const iconBack = (props.icon) ? props.icon : iconName(this.iconPrefix, 'arrow-back');
+                    const iconBack = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'arrow-back');
                     return <Icon name={iconBack} family={family} color={props.iconColor}/>;
                 case (!!props.icon):
-                    return <Icon name={props.icon} family={family} color={props.iconColor}/>;
+                    return <Icon name={fixIconName(props.icon)} family={family} color={props.iconColor}/>;
                 default:
                     return null;
             }
@@ -177,10 +177,11 @@ export default class Navbar extends Component {
                 switch (true) {
                     case (isIOS() && !!props.label):
                         return props.label;
+                    case (isIOS() && !!!props.label):
+                        return 'Back';
                     default:
                         return null;
                 }
-                return props.label || 'Back';
             case (!!props.label):
                 return props.label;
             default:

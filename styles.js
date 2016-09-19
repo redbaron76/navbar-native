@@ -75,7 +75,7 @@ module.exports = {
         fontSize: 17,
         letterSpacing: 0.5,
         color: color.textColor,
-        fontWeight: '500',
+        fontWeight: size.navBarTitleText.fontWeight,
         marginLeft: size.navBarTitleText.marginLeft,
         backgroundColor: 'transparent',
     },

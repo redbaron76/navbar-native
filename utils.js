@@ -12,6 +12,17 @@ export function iconName(prefix, name) {
     return `${prefix}-${name}`;
 }
 
+export function fixIconName(icon) {
+    switch (true) {
+        case (isIOS() && icon.startsWith('md-')):
+            return icon.replace('md-', 'ios-');
+        case (!isIOS() && icon.startsWith('ios-')):
+            return icon.replace('ios-', 'md-');
+        default:
+            return icon;
+    }
+}
+
 export const size = {
     iconSize: iOS(30, 28),
     iconStyle: {
@@ -28,7 +39,8 @@ export const size = {
     },
 
     navBarTitleText: {
-        marginLeft: iOS(0, 12),
+        marginLeft: iOS(0, 8),
+        fontWeight: iOS('500', '400'),
     },
 
     navBarHeight: 44,
