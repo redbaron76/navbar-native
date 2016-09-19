@@ -119,15 +119,16 @@ export default class Navbar extends Component {
     }
 
     renderTitle() {
+        const titleColor = (this.props.titleColor) ? {color: this.props.titleColor}: null;
         switch (true) {
             case (isIOS() && !!this.props.title):
                 return (
                     <View style={styles.navBarTitleContainer}>
-                        <Text style={[styles.navBarTitleText, {color: this.props.titleColor}]}>{this.props.title}</Text>
+                        <Text style={[styles.navBarTitleText, titleColor]}>{this.props.title}</Text>
                     </View>
                 );
             case (!isIOS() && !!this.props.title):
-                return <Text style={[styles.navBarTitleText, {color: this.props.titleColor}]}>{this.props.title}</Text>;
+                return <Text style={[styles.navBarTitleText, titleColor]}>{this.props.title}</Text>;
             case (!!this.props.image):
                 return this.renderImage();
             default:
@@ -179,6 +180,7 @@ export default class Navbar extends Component {
                         return props.label;
                     case (isIOS() && !!!props.label):
                         return 'Back';
+                    case (!isIOS() && !!!props.label):
                     default:
                         return null;
                 }
