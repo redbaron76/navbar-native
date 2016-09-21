@@ -53,4 +53,5 @@ export const color = {
     buttonColor: iOS('#0076FF', '#ffffff'),
     textColor: iOS('#333333', '#ffffff'),
     borderColor: iOS('#efeff4', '#757575'),
+    white: '#ffffff',
 };

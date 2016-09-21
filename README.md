@@ -162,9 +162,18 @@ class ReactNativeEmpty extends Component {
 ```
 
 ### Container API
-- **data** - (Array of strings or Array of Objects) - data source for ListView
+- **data** - (Array of strings or Array of Objects opt.) - data source for ListView
 - **row** - (React component opt.) - Component that renders single roe element in ListView
-- **style** - (Object) - Custom styles for the container,
+- **style** - (Object opt.) - Custom styles for the container
+- **loading** - (Object opt.) - Prop to use in order to trigger the included loading screen
+  - **spinner** - (String def. 'ThreeBounce') - Type of spinner animation from [HERE](https://github.com/maxs15/react-native-spinkit)
+  - **spinnerColor** - (String def. '#ffffff') - Color of the spinner
+  - **spinnerSize** - (Number def. 37) - Size of the spinner
+  - **bgColor** - (String def. 'rgba(0,0,0,.8)') - Color to apply in the background
+  - **message** - (String def. 'Loading...') - Loading text message to display
+  - **messageColor** - (String def. '#ffffff') - Color of the loading text message
+  - **styleContainer** - (Object opt.) - Additional style for the loading screen
+  - **styleText** - (Object opt.) - Additional style for the loading text
 - **type** - ('scroll' or 'list' def. 'scroll') - How to render Container children content
 
 ### Navbar API

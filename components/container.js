@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { ListView, ScrollView, View, Text } from 'react-native';
+import Spinner from 'react-native-spinkit';
 
 import Navbar from './navbar';
 import styles from '../styles';
@@ -8,6 +9,35 @@ const SCROLL = 'scroll';
 const LIST = 'list';
 
 export default class Container extends Component {
+
+    renderLoading() {
+        if (this.props.loading) {
+            const message = this.props.loading.message || 'Loading...';
+            const bgColor = this.props.loading.bgColor || 'rgba(0,0,0,.8)';
+            return (
+                <View key="loading" style={[
+                    styles.loadingContainer.view,
+                    { backgroundColor: bgColor },
+                    this.props.loading.styleContainer
+                ]}>
+                    <View style={undefined}>
+                        <Spinner
+                            size={this.props.loading.spinnerSize}
+                            type={this.props.loading.spinner || 'ThreeBounce'}
+                            color={this.props.loading.spinnerColor || styles.loadingContainer.text.color}
+                        />
+                        <Text style={[
+                            styles.loadingContainer.text,
+                            this.props.loading.styleText
+                        ]}>
+                            {message}
+                        </Text>
+                    </View>
+                </View>
+            );
+        }
+        return null;
+    }
 
     renderNavbar() {
         const navbar = React.Children.map(this.props.children, (child) => {
@@ -71,6 +101,7 @@ export default class Container extends Component {
     render() {
         return (
             <View style={[styles.mainContainer, this.props.style]}>
+                {this.renderLoading()}
                 {this.renderNavbar()}
                 {this.renderContent()}
             </View>
@@ -79,6 +110,17 @@ export default class Container extends Component {
 
     static SCROLL = SCROLL;
     static LIST = LIST;
+
+    static loadingShape = {
+        spinner: PropTypes.string,
+        spinnerColor: PropTypes.string,
+        spinnerSize: PropTypes.string,
+        bgColor: PropTypes.string,
+        message: PropTypes.string,
+        messageColor: PropTypes.string,
+        styleContainer: PropTypes.object,
+        styleText: PropTypes.object,
+    };
 
     static arrayOfObjects = PropTypes.arrayOf(PropTypes.object);
     static arrayOfStrings = PropTypes.arrayOf(PropTypes.string);
@@ -91,5 +133,6 @@ Container.propTypes = {
     ]),
     row: PropTypes.element,
     style: PropTypes.object,
+    loading: PropTypes.shape(Container.loadingShape),
     type: PropTypes.oneOf([SCROLL, LIST])
 };

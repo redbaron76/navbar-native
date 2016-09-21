@@ -3,6 +3,7 @@ import { color, size } from './utils';
 export default styles = {
     mainContainer: {
         flex: 1,
+        position: 'relative',
     },
     contentContainer: {
         flex: 1,
@@ -112,4 +113,22 @@ export default styles = {
         bottom: 0,
         left: 0,
     },
+    loadingContainer: {
+        view: {
+            flex: 1,
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            zIndex: 2,
+            flexDirection:'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        text: {
+            color: color.white,
+            fontSize: 20
+        }
+    }
 };
