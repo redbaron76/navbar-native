@@ -50,6 +50,7 @@ export const size = {
 export const color = {
     bgNavbarColor: iOS('#efeff4', '#757575'),
     bgContentColor: iOS('#ffffff', '#ffffff'),
+    bgLoadingColor: iOS('rgba(0,0,0,.8)','rgba(0,0,0,.8)'),
     buttonColor: iOS('#0076FF', '#ffffff'),
     textColor: iOS('#333333', '#ffffff'),
     borderColor: iOS('#efeff4', '#757575'),

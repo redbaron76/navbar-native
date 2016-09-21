@@ -4,34 +4,43 @@ import Spinner from 'react-native-spinkit';
 
 import Navbar from './navbar';
 import styles from '../styles';
+import { color } from '../utils';
 
 const SCROLL = 'scroll';
 const LIST = 'list';
 
 export default class Container extends Component {
 
+    renderLoadingMessage() {
+        if (this.props.loading && this.props.loading.message) {
+            return (
+                <Text style={[
+                    styles.loadingContainer.text,
+                    { color: this.props.loading.messageColor || color.white},
+                    this.props.loading.styleText
+                ]}>
+                    {this.props.loading.message}
+                </Text>
+            );
+        }
+        return null;
+    }
+
     renderLoading() {
         if (this.props.loading) {
-            const message = this.props.loading.message || 'Loading...';
-            const bgColor = this.props.loading.bgColor || 'rgba(0,0,0,.8)';
             return (
                 <View key="loading" style={[
                     styles.loadingContainer.view,
-                    { backgroundColor: bgColor },
+                    { backgroundColor: this.props.loading.bgColor || color.bgLoadingColor },
                     this.props.loading.styleContainer
                 ]}>
-                    <View style={undefined}>
+                    <View style={styles.loadingContainer.spinner}>
                         <Spinner
-                            size={this.props.loading.spinnerSize}
+                            size={this.props.loading.spinnerSize || 50}
                             type={this.props.loading.spinner || 'ThreeBounce'}
                             color={this.props.loading.spinnerColor || styles.loadingContainer.text.color}
                         />
-                        <Text style={[
-                            styles.loadingContainer.text,
-                            this.props.loading.styleText
-                        ]}>
-                            {message}
-                        </Text>
+                        {this.renderLoadingMessage()}
                     </View>
                 </View>
             );
@@ -122,6 +131,8 @@ export default class Container extends Component {
         styleText: PropTypes.object,
     };
 
+    static loading
+
     static arrayOfObjects = PropTypes.arrayOf(PropTypes.object);
     static arrayOfStrings = PropTypes.arrayOf(PropTypes.string);
 }
@@ -133,6 +144,9 @@ Container.propTypes = {
     ]),
     row: PropTypes.element,
     style: PropTypes.object,
-    loading: PropTypes.shape(Container.loadingShape),
+    loading: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.shape(Container.loadingShape),
+    ]),
     type: PropTypes.oneOf([SCROLL, LIST])
 };

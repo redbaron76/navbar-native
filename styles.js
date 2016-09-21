@@ -126,9 +126,13 @@ export default styles = {
             alignItems: 'center',
             justifyContent: 'center',
         },
+        spinner: {
+            alignItems: 'center',
+        },
         text: {
+            marginTop: 10,
             color: color.white,
-            fontSize: 20
+            fontSize: 20,
         }
     }
 };
