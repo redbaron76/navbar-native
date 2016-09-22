@@ -104,9 +104,12 @@ export default class Container extends Component {
                 return child;
             }
         });
-        const absolute = (this.navbarTransparent) ? styles.contentAbsolute : {};
+
+        const contentStyle = (this.navbarTransparent) ?
+            Object.assign(styles.contentContainer, styles.contentAbsolute) : styles.contentContainer;
+
         return (
-            <View style={Object.assign(styles.contentContainer, absolute)}>
+            <View style={contentStyle}>
                 {this.renderContentType(children)}
             </View>
         );
