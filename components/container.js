@@ -49,8 +49,12 @@ export default class Container extends Component {
     }
 
     renderNavbar() {
+        this.navbarTransparent = false;
         const navbar = React.Children.map(this.props.children, (child) => {
             if (child && child.type == Navbar) {
+                if (child.props.bgColor == 'transparent') {
+                    this.navbarTransparent = true;
+                }
                 return child;
             }
         });
@@ -100,8 +104,9 @@ export default class Container extends Component {
                 return child;
             }
         });
+        const absolute = (this.navbarTransparent) ? styles.contentAbsolute : {};
         return (
-            <View style={styles.contentContainer}>
+            <View style={Object.assign(styles.contentContainer, absolute)}>
                 {this.renderContentType(children)}
             </View>
         );
@@ -142,7 +147,7 @@ Container.propTypes = {
         Container.arrayOfStrings,
         Container.arrayOfObjects,
     ]),
-    row: PropTypes.func,
+    row: PropTypes.element,
     style: PropTypes.object,
     loading: PropTypes.oneOfType([
         PropTypes.bool,

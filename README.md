@@ -11,6 +11,7 @@ A **fully customizable** Navbar component for React-Native.
 - [Exported components](#exported-components)
 - [Getting started](#getting-started)
 - [Images as title](#image-as-title)
+- [Transparent navbar](#transparent-navbar)
 - [Container API](#container-api)
 - [Navbar API](#navbar-api)
 - [Demo](#demo)
@@ -161,6 +162,14 @@ class ReactNativeEmpty extends Component {
 }
 ```
 
+### Transparent Navbar
+
+Do you need a **transparent** navbar and a full-page content beneath it? No problem! We've got you covered...
+
+Just set the **bgColor** to `transparent` and you can achieve something like this:
+
+![transparent_navbar](https://cloud.githubusercontent.com/assets/1061849/18752282/39d75436-80e2-11e6-86a5-92c848446a6d.png)
+
 ### Container API
 - **data** - (Array of strings or Array of Objects opt.) - data source for ListView
 - **row** - (Function opt.) - A function that renders the single row element in ListView (accepts 'rowData', 'sectionID')
@@ -179,7 +188,7 @@ class ReactNativeEmpty extends Component {
 ### Navbar API
 - **title** - (String opt.) - The title string
 - **titleColor** - (String opt.) - The title string color
-- **tintColor** - (String def. '#ffffff') - NavigationBar's background tint color
+- **bgColor** - (String def. '#ffffff') - NavigationBar's background color
 - **image** - (Object opt.) - Local/remote image instead of the title
   - **source** - (String) - Local/remote image location
   - **type** - ('local' or 'remote' def. 'local') - Origin of the image
@@ -213,6 +222,6 @@ class ReactNativeEmpty extends Component {
 
 [MeteorNative](https://github.com/redbaron76/MeteorNative) is a full featured **boilerplate** which brings together **React-Native** and **Meteor js**.
 
-In this project I implement `navbar-native` in many ways and you can see in action specific usages of this package.
+In this project I implement **navbar-native** in many ways and you can see in action specific usages of this package.
 
 ![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18746036/5db45830-80c5-11e6-8222-1813798c8cd4.gif)

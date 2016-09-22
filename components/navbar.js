@@ -279,13 +279,13 @@ export default class Navbar extends Component {
 
     render() {
 
-        const customTintColor = this.props.tintColor ?
-        { backgroundColor: this.props.tintColor } : null;
+        const customBgColor = this.props.bgColor ?
+        { backgroundColor: this.props.bgColor } : null;
 
         const renderTitle = isIOS() ? this.renderTitle() : null;
 
         return (
-            <View style={[styles.navBarContainer, customTintColor]}>
+            <View style={[styles.navBarContainer, customBgColor]}>
                 {this.renderStatusBar()}
                 {this.renderBackgroundImage()}
                 <View style={[styles.navBar, this.props.style,]}>
@@ -364,7 +364,7 @@ Navbar.propTypes = {
     imageBackground: PropTypes.shape(Navbar.imagePropTypes),
     statusBar: PropTypes.shape(Navbar.statusBarShape),
     style: PropTypes.object,
-    tintColor: PropTypes.string,
+    bgColor: PropTypes.string,
     title: PropTypes.string,
     titleColor: PropTypes.string,
     user: PropTypes.oneOfType([
