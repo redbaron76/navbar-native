@@ -163,7 +163,7 @@ class ReactNativeEmpty extends Component {
 
 ### Container API
 - **data** - (Array of strings or Array of Objects opt.) - data source for ListView
-- **row** - (React component opt.) - Component that renders single roe element in ListView
+- **row** - (Function opt.) - A function that renders the single row element in ListView (accepts 'rowData', 'sectionID')
 - **style** - (Object opt.) - Custom styles for the container
 - **loading** - (Object opt.) - Prop to use in order to trigger the included loading screen [SPINNER INSTALLATION INSTRUCTIONS](https://github.com/maxs15/react-native-spinkit)
   - **spinner** - (String def. 'ThreeBounce') - Type of spinner animation from [HERE](https://github.com/maxs15/react-native-spinkit)
@@ -211,6 +211,8 @@ class ReactNativeEmpty extends Component {
 
 ### Demo
 
-Check an advanced implementation [HERE](https://github.com/redbaron76/MeteorNative)
+[MeteorNative](https://github.com/redbaron76/MeteorNative) is a full featured **boilerplate** which brings together **React-Native** and **Meteor js**.
 
-![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18615649/5f3c930a-7dac-11e6-9d52-eef4b56b8d21.gif)
+In this project I implement `navbar-native` in many ways and you can see in action specific usages of this package.
+
+![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18746036/5db45830-80c5-11e6-8222-1813798c8cd4.gif)

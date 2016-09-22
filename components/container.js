@@ -142,7 +142,7 @@ Container.propTypes = {
         Container.arrayOfStrings,
         Container.arrayOfObjects,
     ]),
-    row: PropTypes.element,
+    row: PropTypes.func,
     style: PropTypes.object,
     loading: PropTypes.oneOfType([
         PropTypes.bool,
