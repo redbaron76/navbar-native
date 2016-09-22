@@ -139,8 +139,6 @@ export default class Container extends Component {
         styleText: PropTypes.object,
     };
 
-    static loading
-
     static arrayOfObjects = PropTypes.arrayOf(PropTypes.object);
     static arrayOfStrings = PropTypes.arrayOf(PropTypes.string);
 }
