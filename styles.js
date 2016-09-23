@@ -1,6 +1,6 @@
-import { color, size } from './utils';
+import { color, size, font, theme } from './utils';
 
-export default styles = {
+export default navbarStyles = {
     mainContainer: {
         flex: 1,
         position: 'relative',
@@ -19,7 +19,6 @@ export default styles = {
     navBarContainer: {
         position: 'relative',
         zIndex: 1,
-        backgroundColor: color.bgNavbarColor,
     },
     statusBar: {
         height: size.statusBarHeight,
@@ -44,19 +43,16 @@ export default styles = {
         bottom: 0,
         flexDirection: 'row',
         alignItems: 'stretch',
-        // backgroundColor: 'red',
     },
     navBarMultiButtonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: 'red',
     },
     navBarButtonWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: 'blue',
     },
     navBarButton: {
         flexDirection: 'row',
@@ -64,11 +60,9 @@ export default styles = {
     },
     navBarButtonText: {
         fontSize: 17,
-        letterSpacing: 0.5,
-        color: color.buttonColor,
+        fontFamily: font.buttonText,
         marginBottom: size.navBarButtonText.marginBottom,
         backgroundColor: 'transparent',
-        // backgroundColor: 'purple',
     },
     navBarTitleContainer: {
         position: 'absolute',
@@ -78,12 +72,11 @@ export default styles = {
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: 'lime'
     },
     navBarTitleText: {
         fontSize: 17,
-        letterSpacing: 0.5,
-        color: color.textColor,
+        fontFamily: font.titleText,
+        color: color.titleColor,
         fontWeight: size.navBarTitleText.fontWeight,
         marginLeft: size.navBarTitleText.marginLeft,
         backgroundColor: 'transparent',
@@ -107,7 +100,6 @@ export default styles = {
     },
     iconStyle: {
         marginTop: size.iconStyle.marginTop,
-        color: color.buttonColor,
         backgroundColor: 'transparent',
     },
     imageTitle: {
@@ -144,3 +136,5 @@ export default styles = {
         }
     }
 };
+
+export { theme };

@@ -186,9 +186,10 @@ Just set the **bgColor** to `transparent` and you can achieve something like thi
 - **type** - ('scroll' or 'list' def. 'scroll') - How to render Container children content
 
 ### Navbar API
+- **theme** - ('light' or 'dark' - def. 'light' iOS / 'dark' Android) - Base theme for the NavigationBar
 - **title** - (String opt.) - The title string
 - **titleColor** - (String opt.) - The title string color
-- **bgColor** - (String def. '#ffffff') - NavigationBar's background color
+- **bgColor** - (String def. light: ios #f2f2f2 android #f5f5f5 dark: ios #2b2b2b android #212121 ) - NavigationBar's background color
 - **image** - (Object opt.) - Local/remote image instead of the title
   - **source** - (String) - Local/remote image location
   - **type** - ('local' or 'remote' def. 'local') - Origin of the image
@@ -202,7 +203,7 @@ Just set the **bgColor** to `transparent` and you can achieve something like thi
 - **statusBar** - (Object opt.):
   - **style** - ('light-content' or 'default') - Style of statusBar
   - **hidden** - (Boolean)
-  - **tintColor** - (String) - Status bar tint color
+  - **bgColor** - (String) - Status bar background color
   - **hideAnimation** - ('fade', 'slide', 'none') - Type of statusBar hide animation
   - **showAnimation** - ('fade', 'slide', 'none') - Type of statusBar show animation
 - **left / right** - (Object or Array of Objects):
@@ -210,7 +211,7 @@ Just set the **bgColor** to `transparent` and you can achieve something like thi
   - **iconFamily** - (String def. Ionicons) - Vector Icon's icon library
   - **iconPos** - ('left' or 'right' def. left/right position) - Icon's position towards the label
   - **iconSize** - (Number def. 30 ios - 28 android) - Icon's size
-  - **iconColor** - (String def. '#0076FF' ios - '#FFFFFF' android) - Icon's color
+  - **iconColor** - (String def. light: ios #387afe android #707070 dark: ios #ffffff android #ffffff ) - Icon's color
   - **label** - (String opt.) - Button's label
   - **onPress** - (Function) - onPress function handler
   - **role** - (String opt. - 'back' | 'close' | 'login' | 'menu') - Button's pre-defined aspect

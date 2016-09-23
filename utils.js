@@ -39,7 +39,7 @@ export const size = {
     },
 
     navBarTitleText: {
-        marginLeft: iOS(0, 8),
+        marginLeft: iOS(0, 16),
         fontWeight: iOS('500', '400'),
     },
 
@@ -47,12 +47,40 @@ export const size = {
     statusBarHeight: 20,
 };
 
+export const font = {
+    buttonText: iOS('HelveticaNeue-Medium', 'Roboto'),
+    titleText: iOS('HelveticaNeue-Medium', 'Roboto'),
+};
+
 export const color = {
-    bgNavbarColor: iOS('#efeff4', '#757575'),
-    bgContentColor: iOS('#ffffff', '#ffffff'),
+    bgNavbarColor: iOS('#f2f2f2', '#212121'),
+    bgContentColor: iOS('#ffffff', '#303030'),
     bgLoadingColor: iOS('rgba(0,0,0,.8)','rgba(0,0,0,.8)'),
-    buttonColor: iOS('#0076FF', '#ffffff'),
-    textColor: iOS('#333333', '#ffffff'),
-    borderColor: iOS('#efeff4', '#757575'),
+    buttonColor: iOS('#387afe', '#ffffff'),
+    titleColor: iOS('#000000', '#ffffff'),
+    borderColor: iOS('#ceced2', '#757575'),
     white: '#ffffff',
+};
+
+export const theme = {
+    light: {
+        bgNavbarColor: iOS('#f2f2f2', '#f5f5f5'),
+        buttonColor: iOS('#387afe', '#707070'),
+        titleColor: iOS('#000000', '#000000'),
+        statusBar: iOS({
+            style: 'default'
+        }, {
+            backgroundColor: '#707070',
+        })
+    },
+    dark: {
+        bgNavbarColor: iOS('#2b2b2b', '#212121'),
+        buttonColor: iOS('#ffffff', '#ffffff'),
+        titleColor: iOS('#ffffff', '#ffffff'),
+        statusBar: iOS({
+            style: 'light-content'
+        }, {
+            backgroundColor: '#000000',
+        })
+    }
 };

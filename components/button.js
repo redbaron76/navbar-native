@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 
-import styles from '../styles';
+import styles, { theme } from '../styles';
 
 const MARGIN = 4;
 
@@ -33,6 +33,7 @@ export default class Button extends Component {
                         case (child && typeof child == 'string'):
                             return <Text style={[
                                 styles.navBarButtonText,
+                                { color: theme[this.props.theme].buttonColor },
                                 this._setIconLabelMargins(this.props),
                                 this.props.customStyle
                             ]}>
@@ -161,6 +162,7 @@ export default class Button extends Component {
         btnLeft: PropTypes.bool,
         btnRight: PropTypes.bool,
         onPress: PropTypes.func,
+        theme: PropTypes.string,
         customStyle: PropTypes.object,
     };
 };

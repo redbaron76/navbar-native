@@ -3,7 +3,7 @@ import { Image, Text, View, Platform, StatusBar } from 'react-native';
 
 import Icon from './icon';
 import Button from './button';
-import styles from '../styles';
+import styles, { theme } from '../styles';
 import { isIOS, iOS, iconName, fixIconName } from '../utils';
 
 const BACK = 'back';
@@ -15,6 +15,9 @@ const FADE = 'fade';
 const SLIDE = 'slide';
 const NONE = 'none';
 
+const DARK = 'dark';
+const LIGHT = 'light';
+
 export default class Navbar extends Component {
 
     constructor(props) {
@@ -24,19 +27,24 @@ export default class Navbar extends Component {
         this.hasRightBtn = !!props.right;
         this.hasBothBtn = this.hasLeftBtn && this.hasRightBtn;
         this.iconPrefix = isIOS() ? 'ios' : 'md';
+        this.theme = !!props.theme ? props.theme : isIOS() ? LIGHT : DARK;
     }
 
     _setupStatusBar(data) {
         if (isIOS()) {
             if (data.style) {
                 StatusBar.setBarStyle(data.style);
+            } else {
+                StatusBar.setBarStyle(theme[this.theme].statusBar.style);
             }
-            const animation = data.hidden ?
-                (data.hideAnimation || Navbar.defaultProps.statusBar.hideAnimation) :
-                (data.showAnimation || Navbar.defaultProps.statusBar.showAnimation);
 
+            const animation = data.hidden ?
+                (data.hideAnimation || Navbar.defaultProps.statusBar.iOS.hideAnimation) :
+                (data.showAnimation || Navbar.defaultProps.statusBar.iOS.showAnimation);
+
+            StatusBar.animated = data.animated || Navbar.defaultProps.statusBar.iOS.animated
             StatusBar.showHideTransition = animation;
-            StatusBar.hidden = data.hidden;
+            StatusBar.hidden = data.hidden || Navbar.defaultProps.statusBar.iOS.hidden;
         }
     }
 
@@ -78,12 +86,17 @@ export default class Navbar extends Component {
 
     renderStatusBar() {
 
-        const customStatusBarTintColor = this.props.statusBar.tintColor ?
-        { backgroundColor: this.props.statusBar.tintColor } : null;
+        const customStatusBarBgColor = this.props.statusBar.bgColor ?
+        { backgroundColor: this.props.statusBar.bgColor } : null;
 
         switch (true) {
             case (isIOS() && !this.props.statusBar.hidden):
-                return <View style={[styles.statusBar, customStatusBarTintColor,]} />;
+                return <View style={[styles.statusBar, customStatusBarBgColor]}/>;
+            case (!isIOS() && !this.props.statusBar.hidden):
+                const bgStatusBarColor = this.props.statusBar.bgColor ?
+                { backgroundColor: this.props.statusBar.bgColor } : theme[this.theme].statusBar;
+                const androidStatusBar = Object.assign(Navbar.defaultProps.statusBar.android, bgStatusBarColor);
+                return <StatusBar {...androidStatusBar}/>;
             default:
                 return null;
         }
@@ -119,7 +132,7 @@ export default class Navbar extends Component {
     }
 
     renderTitle() {
-        const titleColor = (this.props.titleColor) ? {color: this.props.titleColor}: null;
+        const titleColor = {color: (this.props.titleColor) ? this.props.titleColor : theme[this.theme].titleColor};
         switch (true) {
             case (isIOS() && !!this.props.title):
                 return (
@@ -138,26 +151,24 @@ export default class Navbar extends Component {
 
     renderIcon(props, labelPos, btnPos) {
         if ((!props.iconPos && labelPos == btnPos) || props.iconPos == labelPos) {
-
             const family = (props.iconFamily) ? props.iconFamily : 'Ionicons';
-
             switch (true) {
                 case (props.role == MENU):
                     switch (true) {
                         case (!!this.props.user):
                             const icon = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'menu');
-                            return <Icon name={icon} family={family} color={props.iconColor}/>;
+                            return <Icon name={icon} family={family} color={props.iconColor} theme={this.theme}/>;
                         default:
                             return null;
                     }
                 case (props.role == CLOSE):
                     const iconClose = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'close');
-                    return <Icon name={iconClose} family={family} color={props.iconColor}/>;
+                    return <Icon name={iconClose} family={family} color={props.iconColor} theme={this.theme}/>;
                 case (props.role == BACK):
                     const iconBack = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'arrow-back');
-                    return <Icon name={iconBack} family={family} color={props.iconColor}/>;
+                    return <Icon name={iconBack} family={family} color={props.iconColor} theme={this.theme}/>;
                 case (!!props.icon):
-                    return <Icon name={fixIconName(props.icon)} family={family} color={props.iconColor}/>;
+                    return <Icon name={fixIconName(props.icon)} family={family} color={props.iconColor} theme={this.theme}/>;
                 default:
                     return null;
             }
@@ -195,6 +206,7 @@ export default class Navbar extends Component {
         return (
             <Button
                 key={"btn_" + icon2_2 + i}
+                theme={this.theme}
                 btnLeft={icon2_2 == 'left'}
                 btnRight={icon2_2 == 'right'}
                 style={styles.navBarButtonWrapper}
@@ -278,14 +290,10 @@ export default class Navbar extends Component {
     }
 
     render() {
-
-        const customBgColor = this.props.bgColor ?
-        { backgroundColor: this.props.bgColor } : null;
-
         const renderTitle = isIOS() ? this.renderTitle() : null;
-
+        const bgColor = { backgroundColor: this.props.bgColor ? this.props.bgColor : theme[this.theme].bgNavbarColor };
         return (
-            <View style={[styles.navBarContainer, customBgColor]}>
+            <View style={[styles.navBarContainer, bgColor]}>
                 {this.renderStatusBar()}
                 {this.renderBackgroundImage()}
                 <View style={[styles.navBar, this.props.style,]}>
@@ -310,7 +318,7 @@ export default class Navbar extends Component {
     static statusBarShape = {
         style: PropTypes.oneOf(['light-content', 'default', ]),
         hidden: PropTypes.bool,
-        tintColor: PropTypes.string,
+        bgColor: PropTypes.string,
         hideAnimation: PropTypes.oneOf([FADE, SLIDE, NONE, ]),
         showAnimation: PropTypes.oneOf([FADE, SLIDE, NONE, ]),
     };
@@ -339,10 +347,17 @@ export default class Navbar extends Component {
 
     static defaultProps = {
         statusBar: {
-            style: 'default',
-            hidden: false,
-            hideAnimation: SLIDE,
-            showAnimation: SLIDE,
+            iOS: {
+                animated: true,
+                hidden: false,
+                hideAnimation: SLIDE,
+                showAnimation: SLIDE,
+            },
+            android: {
+                animated: true,
+                hidden: false,
+                translucent: false,
+            }
         }
     };
 
@@ -352,6 +367,7 @@ export default class Navbar extends Component {
 }
 
 Navbar.propTypes = {
+    theme: PropTypes.oneOf([DARK, LIGHT]),
     left: PropTypes.oneOfType([
         Navbar.arrayOfButtons,
         Navbar.buttonShape,

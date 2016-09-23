@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -8,7 +8,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 
-import styles from '../styles';
+import styles, { theme } from '../styles';
 import { size } from '../utils';
 
 export default class Icon extends Component {
@@ -42,7 +42,7 @@ export default class Icon extends Component {
     }
 
     render() {
-        const color = this.props.color ? {color: this.props.color} : null;
+        const color = {color: this.props.color ? this.props.color : theme[this.props.theme].buttonColor};
         return(
             <this.Icon
                 name={this.props.name}
@@ -50,5 +50,12 @@ export default class Icon extends Component {
                 style={[styles.iconStyle, color]}
             />
         );
+    }
+
+    static propTypes = {
+        family: PropTypes.string,
+        name: PropTypes.string,
+        color: PropTypes.string,
+        theme: PropTypes.string,
     }
 }
