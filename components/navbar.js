@@ -30,24 +30,6 @@ export default class Navbar extends Component {
         this.theme = !!props.theme ? props.theme : isIOS() ? LIGHT : DARK;
     }
 
-    _setupStatusBar(data) {
-        if (isIOS()) {
-            if (data.style) {
-                StatusBar.setBarStyle(data.style);
-            } else {
-                StatusBar.setBarStyle(theme[this.theme].statusBar.style);
-            }
-
-            const animation = data.hidden ?
-                (data.hideAnimation || Navbar.defaultProps.statusBar.iOS.hideAnimation) :
-                (data.showAnimation || Navbar.defaultProps.statusBar.iOS.showAnimation);
-
-            StatusBar.animated = data.animated || Navbar.defaultProps.statusBar.iOS.animated
-            StatusBar.showHideTransition = animation;
-            StatusBar.hidden = data.hidden || Navbar.defaultProps.statusBar.iOS.hidden;
-        }
-    }
-
     _managePress(props) {
         switch (true) {
             case (props.role == LOGIN):
@@ -91,7 +73,17 @@ export default class Navbar extends Component {
 
         switch (true) {
             case (isIOS() && !this.props.statusBar.hidden):
-                return <View style={[styles.statusBar, customStatusBarBgColor]}/>;
+                const statusBarStyle = { barStyle: (this.props.statusBar && this.props.statusBar.style) ?
+                    this.props.statusBar.style : theme[this.theme].statusBar.style }
+                const iOsStatusBar = Object.assign(Navbar.defaultProps.statusBar.iOS, statusBarStyle);
+
+                if (this.props.statusBar && this.props.statusBar.hidden) iOsStatusBar.hidden = this.props.statusBar.hidden;
+                if (this.props.statusBar && this.props.statusBar.animation) iOsStatusBar.animated = this.props.statusBar.animation;
+                if (this.props.statusBar && this.props.statusBar.transition) iOsStatusBar.showHideTransition = this.props.statusBar.transition;
+
+                return <View style={[styles.statusBar, customStatusBarBgColor]}>
+                    <StatusBar {...iOsStatusBar} />
+                </View>;
             case (!isIOS() && !this.props.statusBar.hidden):
                 const bgStatusBarColor = this.props.statusBar.bgColor ?
                 { backgroundColor: this.props.statusBar.bgColor } : theme[this.theme].statusBar;
@@ -307,14 +299,6 @@ export default class Navbar extends Component {
         );
     }
 
-    componentWillReceiveProps(props) {
-        this._setupStatusBar(props.statusBar);
-    }
-
-    componentDidMount() {
-        this._setupStatusBar(this.props.statusBar);
-    }
-
     static statusBarShape = {
         style: PropTypes.oneOf(['light-content', 'default', ]),
         hidden: PropTypes.bool,
@@ -350,8 +334,8 @@ export default class Navbar extends Component {
             iOS: {
                 animated: true,
                 hidden: false,
-                hideAnimation: SLIDE,
-                showAnimation: SLIDE,
+                showHideTransition: FADE,
+                networkActivityIndicatorVisible: false,
             },
             android: {
                 animated: true,

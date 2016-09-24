@@ -201,11 +201,11 @@ Just set the **bgColor** to `transparent` and you can achieve something like thi
   - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
   - **style** - (Object opt.) - Additional styles for image background  
 - **statusBar** - (Object opt.):
-  - **style** - ('light-content' or 'default') - Style of statusBar
-  - **hidden** - (Boolean)
-  - **bgColor** - (String) - Status bar background color
-  - **hideAnimation** - ('fade', 'slide', 'none') - Type of statusBar hide animation
-  - **showAnimation** - ('fade', 'slide', 'none') - Type of statusBar show animation
+  - **style** - ('light-content' or 'default') - Style of StatusBar
+  - **hidden** - (Boolean) - Show or not StatusBar
+  - **bgColor** - (String) - StatusBar background color
+  - **animation** - (Boolean def. true) - Animation between StatusBar transitions
+  - **transition** - ('fade' or 'slide' def. 'fade') - Type of StatusBar transition animation when hiding it
 - **left / right** - (Object or Array of Objects):
   - **icon** - (String opt.) - Vector Icon's icon name
   - **iconFamily** - (String def. Ionicons) - Vector Icon's icon library
