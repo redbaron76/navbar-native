@@ -166,7 +166,7 @@ class ReactNativeEmpty extends Component {
 
 Do you need a **transparent** navbar and a full-page content beneath it? No problem! We've got you covered...
 
-Just set the **bgColor** to `transparent` and you can achieve something like this:
+Just set `bgColor="transparent"` and `theme="dark"` and you can achieve something like this:
 
 ![transparent_navbar](https://cloud.githubusercontent.com/assets/1061849/18752282/39d75436-80e2-11e6-86a5-92c848446a6d.png)
 
@@ -191,7 +191,7 @@ Just set the **bgColor** to `transparent` and you can achieve something like thi
 - **titleColor** - (String opt.) - The title string color
 - **bgColor** - (String def. light: ios #f2f2f2 android #f5f5f5 dark: ios #2b2b2b android #212121 ) - NavigationBar's background color
 - **image** - (Object opt.) - Local/remote image instead of the title
-  - **source** - (String) - Local/remote image location
+  - **source** - (require(String) for local or String for remote uri) - Local/remote image location
   - **type** - ('local' or 'remote' def. 'local') - Origin of the image
   - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
   - **style** - (Object opt.) - Additional styles for image title

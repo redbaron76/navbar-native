@@ -3,7 +3,7 @@ import { Image, Text, View, Platform, StatusBar } from 'react-native';
 
 import Icon from './icon';
 import Button from './button';
-import styles, { theme } from '../styles';
+import styles, { theme, size } from '../styles';
 import { isIOS, iOS, iconName, fixIconName } from '../utils';
 
 const BACK = 'back';
@@ -100,7 +100,7 @@ export default class Navbar extends Component {
                 return {uri: prop.source};
             case (prop.type == 'local'):
             default:
-                return require(prop.source);
+                return prop.source;
         }
     }
 
@@ -320,7 +320,10 @@ export default class Navbar extends Component {
     };
 
     static imagePropTypes = {
-        source: PropTypes.string,
+        source: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
         type: PropTypes.oneOf(['local', 'remote']),
         resizeMode: PropTypes.oneOf(['cover', 'contain', 'stretch', 'repeat', 'center']),
         style: PropTypes.object
