@@ -114,7 +114,7 @@ export default class Container extends Component {
             : Object.assign(
             {},
             styles.contentContainer,
-            this.props.style
+            {backgroundColor: this.props.bgColor}
         );
 
         return (
@@ -126,7 +126,7 @@ export default class Container extends Component {
 
     render() {
         return (
-            <View style={styles.mainContainer}>
+            <View style={[styles.mainContainer, this.props.style]}>
                 {this.renderLoading()}
                 {this.renderNavbar()}
                 {this.renderContent()}
@@ -163,5 +163,6 @@ Container.propTypes = {
         PropTypes.bool,
         PropTypes.shape(Container.loadingShape),
     ]),
-    type: PropTypes.oneOf([SCROLL, LIST])
+    type: PropTypes.oneOf([SCROLL, LIST]),
+    bgColor: PropTypes.string,
 };

@@ -171,6 +171,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
 ![transparent_navbar](https://cloud.githubusercontent.com/assets/1061849/18752282/39d75436-80e2-11e6-86a5-92c848446a6d.png)
 
 ### Container API
+- **bgColor** - (String def. '#ffffff') - Background color for the Container, the one you see overscrolling
 - **data** - (Array of strings or Array of Objects opt.) - data source for ListView
 - **row** - (Function opt.) - A function that renders the single row element in ListView (accepts 'rowData', 'sectionID')
 - **style** - (Object opt.) - Custom styles for the container
