@@ -75,7 +75,7 @@ export default class Navbar extends Component {
             case (isIOS() && !this.props.statusBar.hidden):
                 const statusBarStyle = { barStyle: (this.props.statusBar && this.props.statusBar.style) ?
                     this.props.statusBar.style : theme[this.theme].statusBar.style }
-                const iOsStatusBar = Object.assign(Navbar.defaultProps.statusBar.iOS, statusBarStyle);
+                const iOsStatusBar = Object.assign({}, Navbar.defaultProps.statusBar.iOS, statusBarStyle);
 
                 if (this.props.statusBar && this.props.statusBar.hidden) iOsStatusBar.hidden = this.props.statusBar.hidden;
                 if (this.props.statusBar && this.props.statusBar.animation) iOsStatusBar.animated = this.props.statusBar.animation;
@@ -87,7 +87,7 @@ export default class Navbar extends Component {
             case (!isIOS() && !this.props.statusBar.hidden):
                 const bgStatusBarColor = this.props.statusBar.bgColor ?
                 { backgroundColor: this.props.statusBar.bgColor } : theme[this.theme].statusBar;
-                const androidStatusBar = Object.assign(Navbar.defaultProps.statusBar.android, bgStatusBarColor);
+                const androidStatusBar = Object.assign({}, Navbar.defaultProps.statusBar.android, bgStatusBarColor);
                 return <StatusBar {...androidStatusBar}/>;
             default:
                 return null;

@@ -106,7 +106,12 @@ export default class Container extends Component {
         });
 
         const contentStyle = (this.navbarTransparent) ?
-            Object.assign(styles.contentContainer, styles.contentAbsolute) : styles.contentContainer;
+            Object.assign(
+                {},
+                styles.contentContainer,
+                styles.contentAbsolute,
+                {backgroundColor: 'transparent'})
+            : styles.contentContainer;
 
         return (
             <View style={contentStyle}>
