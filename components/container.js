@@ -111,7 +111,11 @@ export default class Container extends Component {
                 styles.contentContainer,
                 styles.contentAbsolute,
                 {backgroundColor: 'transparent'})
-            : styles.contentContainer;
+            : Object.assign(
+            {},
+            styles.contentContainer,
+            this.props.style
+        );
 
         return (
             <View style={contentStyle}>
@@ -122,7 +126,7 @@ export default class Container extends Component {
 
     render() {
         return (
-            <View style={[styles.mainContainer, this.props.style]}>
+            <View style={styles.mainContainer}>
                 {this.renderLoading()}
                 {this.renderNavbar()}
                 {this.renderContent()}
