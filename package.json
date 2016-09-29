@@ -12,7 +12,6 @@
     "navbar"
   ],
   "dependencies": {
-    "react-native": ">= 0.16",
     "react-native-vector-icons": "~2.1.0",
     "react-native-spinkit": "~0.1.3"
   },
