@@ -329,9 +329,6 @@ export default class Navbar extends Component {
         style: PropTypes.object
     };
 
-    static buttonShape = PropTypes.shape(this.buttonPropTypes);
-    static arrayOfButtons = PropTypes.arrayOf(this.buttonShape);
-
     static defaultProps = {
         statusBar: {
             iOS: {
@@ -353,15 +350,17 @@ export default class Navbar extends Component {
     static NONE = NONE;
 }
 
+const buttonShape = PropTypes.shape(Navbar.buttonPropTypes);
+
 Navbar.propTypes = {
     theme: PropTypes.oneOf([DARK, LIGHT]),
     left: PropTypes.oneOfType([
-        Navbar.arrayOfButtons,
-        Navbar.buttonShape,
+        buttonShape,
+        PropTypes.arrayOf(buttonShape),
     ]),
     right: PropTypes.oneOfType([
-        Navbar.arrayOfButtons,
-        Navbar.buttonShape,
+        buttonShape,
+        PropTypes.arrayOf(buttonShape),
     ]),
     image: PropTypes.shape(Navbar.imagePropTypes),
     imageBackground: PropTypes.shape(Navbar.imagePropTypes),
