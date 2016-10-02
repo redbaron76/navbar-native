@@ -149,18 +149,18 @@ export default class Navbar extends Component {
                     switch (true) {
                         case (!!this.props.user):
                             const icon = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'menu');
-                            return <Icon name={icon} family={family} color={props.iconColor} theme={this.theme}/>;
+                            return <Icon name={icon} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
                         default:
                             return null;
                     }
                 case (props.role == CLOSE):
                     const iconClose = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'close');
-                    return <Icon name={iconClose} family={family} color={props.iconColor} theme={this.theme}/>;
+                    return <Icon name={iconClose} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
                 case (props.role == BACK):
                     const iconBack = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'arrow-back');
-                    return <Icon name={iconBack} family={family} color={props.iconColor} theme={this.theme}/>;
+                    return <Icon name={iconBack} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
                 case (!!props.icon):
-                    return <Icon name={fixIconName(props.icon)} family={family} color={props.iconColor} theme={this.theme}/>;
+                    return <Icon name={fixIconName(props.icon)} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
                 default:
                     return null;
             }

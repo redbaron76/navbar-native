@@ -46,7 +46,7 @@ export default class Icon extends Component {
         return(
             <this.Icon
                 name={this.props.name}
-                size={size.iconSize}
+                size={this.props.size}
                 style={[styles.iconStyle, color]}
             />
         );
@@ -57,5 +57,8 @@ export default class Icon extends Component {
         name: PropTypes.string,
         color: PropTypes.string,
         theme: PropTypes.string,
-    }
+    };
+    static defaultProps = {
+        size: size.iconSize
+    };
 }
