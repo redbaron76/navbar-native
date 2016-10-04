@@ -58,6 +58,7 @@ export default class Icon extends Component {
         color: PropTypes.string,
         theme: PropTypes.string,
     };
+
     static defaultProps = {
         size: size.iconSize
     };

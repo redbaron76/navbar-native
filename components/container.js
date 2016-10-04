@@ -1,15 +1,21 @@
 import React, { Component, PropTypes } from 'react';
-import { ListView, ScrollView, View, Text } from 'react-native';
+import { ListView, ScrollView, View, Text, Dimensions } from 'react-native';
 import Spinner from 'react-native-spinkit';
-
 import Navbar from './navbar';
 import styles from '../styles';
-import { color } from '../utils';
+import { color, size } from '../utils';
 
 const SCROLL = 'scroll';
 const LIST = 'list';
 
 export default class Container extends Component {
+
+    constructor(props) {
+        super(props)
+
+        const { height } = Dimensions.get('window');
+        this.navbarHeight = height - (size.navBarHeight + size.statusBarHeight);
+    }
 
     renderLoadingMessage() {
         if (this.props.loading && this.props.loading.message) {
@@ -77,6 +83,7 @@ export default class Container extends Component {
     }
 
     renderContentType(children) {
+
         switch (true) {
             case (this.props.type == LIST && !!this.props.data):
                 return (
@@ -91,7 +98,10 @@ export default class Container extends Component {
             case (this.props.type == SCROLL):
             default:
                 return (
-                    <ScrollView contentContainerStyle={styles.mainContainer}>
+                    <ScrollView
+                        style={{height: this.navbarHeight}}
+                        contentContainerStyle={{minHeight: this.navbarHeight}}
+                    >
                         {children}
                     </ScrollView>
                 );

@@ -188,7 +188,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
 
 ### Navbar API
 - **theme** - ('light' or 'dark' - def. 'light' iOS / 'dark' Android) - Base theme for the NavigationBar
-- **title** - (String opt.) - The title string
+- **title** - (String or Component opt.) - The title element. Component needs to be styled accordingly.
 - **titleColor** - (String opt.) - The title string color
 - **bgColor** - (String def. light: ios #f2f2f2 android #f5f5f5 dark: ios #2b2b2b android #212121 ) - NavigationBar's background color
 - **image** - (Object opt.) - Local/remote image instead of the title

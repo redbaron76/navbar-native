@@ -126,14 +126,16 @@ export default class Navbar extends Component {
     renderTitle() {
         const titleColor = {color: (this.props.titleColor) ? this.props.titleColor : theme[this.theme].titleColor};
         switch (true) {
-            case (isIOS() && !!this.props.title):
+            case (isIOS() && !!this.props.title && typeof this.props.title === "string"):
                 return (
                     <View style={styles.navBarTitleContainer}>
                         <Text style={[styles.navBarTitleText, titleColor]}>{this.props.title}</Text>
                     </View>
                 );
-            case (!isIOS() && !!this.props.title):
+            case (!isIOS() && !!this.props.title && typeof this.props.title === "string"):
                 return <Text style={[styles.navBarTitleText, titleColor]}>{this.props.title}</Text>;
+            case (!!this.props.title && typeof this.props.title !== "string"):
+                return this.props.title;
             case (!!this.props.image):
                 return this.renderImage();
             default:
@@ -288,7 +290,7 @@ export default class Navbar extends Component {
             <View style={[styles.navBarContainer, bgColor]}>
                 {this.renderStatusBar()}
                 {this.renderBackgroundImage()}
-                <View style={[styles.navBar, this.props.style,]}>
+                <View style={[styles.navBar, this.props.style]}>
                     {renderTitle}
                     <View style={[styles.navBarButtonContainer, this._manageJustifyContentContainer()]}>
                         {this.renderLeftButton()}
@@ -354,6 +356,16 @@ const buttonShape = PropTypes.shape(Navbar.buttonPropTypes);
 
 Navbar.propTypes = {
     theme: PropTypes.oneOf([DARK, LIGHT]),
+    title: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.string,
+        PropTypes.element
+    ]),
+    titleColor: PropTypes.string,
+    bgColor: PropTypes.string,
+    image: PropTypes.shape(Navbar.imagePropTypes),
+    imageBackground: PropTypes.shape(Navbar.imagePropTypes),
+    statusBar: PropTypes.shape(Navbar.statusBarShape),
     left: PropTypes.oneOfType([
         buttonShape,
         PropTypes.arrayOf(buttonShape),
@@ -362,13 +374,7 @@ Navbar.propTypes = {
         buttonShape,
         PropTypes.arrayOf(buttonShape),
     ]),
-    image: PropTypes.shape(Navbar.imagePropTypes),
-    imageBackground: PropTypes.shape(Navbar.imagePropTypes),
-    statusBar: PropTypes.shape(Navbar.statusBarShape),
     style: PropTypes.object,
-    bgColor: PropTypes.string,
-    title: PropTypes.string,
-    titleColor: PropTypes.string,
     user: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool

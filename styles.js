@@ -137,4 +137,4 @@ export default navbarStyles = {
     }
 };
 
-export { theme };
+export { theme, size };
