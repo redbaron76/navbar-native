@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { ListView, ScrollView, View, Text, Dimensions } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Spinner from 'react-native-spinkit';
 import Navbar from './navbar';
 import styles from '../styles';
@@ -11,10 +12,12 @@ const LIST = 'list';
 export default class Container extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         const { height } = Dimensions.get('window');
+        this.windowHeight = height;
         this.navbarHeight = height - (size.navBarHeight + size.statusBarHeight);
+        this.hasNavbar = false;
     }
 
     renderLoadingMessage() {
@@ -58,6 +61,7 @@ export default class Container extends Component {
         this.navbarTransparent = false;
         const navbar = React.Children.map(this.props.children, (child) => {
             if (child && child.type == Navbar) {
+                this.hasNavbar = true;
                 if (child.props.bgColor == 'transparent') {
                     this.navbarTransparent = true;
                 }
@@ -84,6 +88,8 @@ export default class Container extends Component {
 
     renderContentType(children) {
 
+        const height = (this.hasNavbar) ? this.navbarHeight : this.windowHeight;
+
         switch (true) {
             case (this.props.type == LIST && !!this.props.data):
                 return (
@@ -98,12 +104,14 @@ export default class Container extends Component {
             case (this.props.type == SCROLL):
             default:
                 return (
-                    <ScrollView
-                        style={{height: this.navbarHeight}}
-                        contentContainerStyle={{minHeight: this.navbarHeight}}
+                    <KeyboardAwareScrollView
+                        style={{height: height}}
+                        contentContainerStyle={{minHeight: height}}
+                        resetScrollToCoords={{x:0,y:0}}
+                        contentInset={{bottom: 0}}
                     >
                         {children}
-                    </ScrollView>
+                    </KeyboardAwareScrollView>
                 );
         }
     }
