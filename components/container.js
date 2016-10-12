@@ -95,6 +95,7 @@ export default class Container extends Component {
                 return (
                     <ListView
                         {...this.props}
+                        ref={this.props.contentRef}
                         dataSource={this._getDataSource()}
                         renderRow={this.props.row || this.defaultListRow}
                     >
@@ -106,6 +107,7 @@ export default class Container extends Component {
                 return (
                     <KeyboardAwareScrollView
                         style={{height: height}}
+                        ref={this.props.contentRef}
                         contentContainerStyle={{minHeight: height}}
                         resetScrollToCoords={{x:0,y:0}}
                         contentInset={{bottom: 0}}
@@ -175,7 +177,8 @@ Container.propTypes = {
         Container.arrayOfStrings,
         Container.arrayOfObjects,
     ]),
-    row: PropTypes.element,
+    row: PropTypes.func,
+    contentRef:PropTypes.func,
     style: PropTypes.object,
     loading: PropTypes.oneOfType([
         PropTypes.bool,
