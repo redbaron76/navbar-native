@@ -8,6 +8,7 @@ import { color, size } from '../utils';
 
 const SCROLL = 'scroll';
 const LIST = 'list';
+const PLAIN = 'plain';
 
 export default class Container extends Component {
 
@@ -102,6 +103,14 @@ export default class Container extends Component {
                         {children}
                     </ListView>
                 );
+            case (this.props.type == PLAIN):
+                return (
+                    <View
+                        {...this.props}
+                    >
+                        {children}
+                    </View>
+                );
             case (this.props.type == SCROLL):
             default:
                 return (
@@ -156,6 +165,7 @@ export default class Container extends Component {
 
     static SCROLL = SCROLL;
     static LIST = LIST;
+    static PLAIN = PLAIN;
 
     static loadingShape = {
         spinner: PropTypes.string,
@@ -184,6 +194,6 @@ Container.propTypes = {
         PropTypes.bool,
         PropTypes.shape(Container.loadingShape),
     ]),
-    type: PropTypes.oneOf([SCROLL, LIST]),
+    type: PropTypes.oneOf([SCROLL, LIST,PLAIN]),
     bgColor: PropTypes.string,
 };
