@@ -102,10 +102,6 @@ export default navbarStyles = {
         marginTop: size.iconStyle.marginTop,
         backgroundColor: 'transparent',
     },
-    imageTitle: {
-        width: size.navBarHeight,
-        height: size.navBarHeight,
-    },
     imageBackground: {
         position: 'absolute',
         top: 0,

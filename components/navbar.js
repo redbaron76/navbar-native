@@ -108,7 +108,7 @@ export default class Navbar extends Component {
         const image = <Image
             source={this._getImageTitleSource(this.props.image)}
             resizeMode={this.props.image.resizeMode || 'cover'}
-            style={[styles.imageTitle, this.props.image.style]}
+            style={this.props.image.style}
         />;
 
         switch (true) {
