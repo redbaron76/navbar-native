@@ -207,7 +207,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **bgColor** - (String) - StatusBar background color
   - **animation** - (Boolean def. true) - Animation between StatusBar transitions
   - **transition** - ('fade' or 'slide' def. 'fade') - Type of StatusBar transition animation when hiding it
-- **left / right** - (Object or Array of Objects):
+- **left / right** - (Object or Array of Objects or React component / return function):
   - **icon** - (String opt.) - Vector Icon's icon name
   - **iconFamily** - (String def. Ionicons) - Vector Icon's icon library
   - **iconPos** - ('left' or 'right' def. left/right position) - Icon's position towards the label

@@ -108,7 +108,7 @@ export default class Navbar extends Component {
         const image = <Image
             source={this._getImageTitleSource(this.props.image)}
             resizeMode={this.props.image.resizeMode || 'cover'}
-            style={[styles.imageTitie, this.props.image.style]}
+            style={[styles.imageTitle, this.props.image.style]}
         />;
 
         switch (true) {
@@ -197,23 +197,28 @@ export default class Navbar extends Component {
     }
 
     renderButton(props, icon1_1, icon1_2, icon2_1, icon2_2, i = 0) {
-        return (
-            <Button
-                key={"btn_" + icon2_2 + i}
-                theme={this.theme}
-                btnLeft={icon2_2 == 'left'}
-                btnRight={icon2_2 == 'right'}
-                style={styles.navBarButtonWrapper}
-                customStyle={props.style}
-                iconPos={props.iconPos}
-                iconStyle={[props.iconStyle]}
-                onPress={this._managePress(props)}
-            >
-                {this.renderIcon(props, icon1_1, icon1_2)}
-                {this.renderLabel(props)}
-                {this.renderIcon(props, icon2_1, icon2_2)}
-            </Button>
-        );
+        switch (true) {
+            case (React.isValidElement(props)):
+                return props;
+            default:
+                return (
+                    <Button
+                        key={"btn_" + icon2_2 + i}
+                        theme={this.theme}
+                        btnLeft={icon2_2 == 'left'}
+                        btnRight={icon2_2 == 'right'}
+                        style={styles.navBarButtonWrapper}
+                        customStyle={props.style}
+                        iconPos={props.iconPos}
+                        iconStyle={[props.iconStyle]}
+                        onPress={this._managePress(props)}
+                    >
+                        {this.renderIcon(props, icon1_1, icon1_2)}
+                        {this.renderLabel(props)}
+                        {this.renderIcon(props, icon2_1, icon2_2)}
+                    </Button>
+                );
+        }
     }
 
     renderLeftButton() {
@@ -369,10 +374,14 @@ Navbar.propTypes = {
     left: PropTypes.oneOfType([
         buttonShape,
         PropTypes.arrayOf(buttonShape),
+        PropTypes.element,
+        PropTypes.func,
     ]),
     right: PropTypes.oneOfType([
         buttonShape,
         PropTypes.arrayOf(buttonShape),
+        PropTypes.element,
+        PropTypes.func,
     ]),
     style: PropTypes.object,
     user: PropTypes.oneOfType([
