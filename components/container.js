@@ -88,7 +88,11 @@ export default class Container extends Component {
 
     renderContentType(children) {
 
-        const height = (this.hasNavbar) ? this.navbarHeight : this.windowHeight;
+        let height = (this.hasNavbar) ? this.navbarHeight : this.windowHeight;
+
+        if (this.props.height) {
+            height = this.props.height;
+        }
 
         switch (true) {
             case (this.props.type == LIST && !!this.props.data):
@@ -135,8 +139,13 @@ export default class Container extends Component {
             {backgroundColor: this.props.bgColor}
         );
 
+        let contentHeight = {};
+        if (this.props.height) {
+            contentHeight = {height: this.props.height};
+        }
+
         return (
-            <View style={contentStyle}>
+            <View style={[contentStyle, contentHeight]}>
                 {this.renderContentType(children)}
             </View>
         );
@@ -183,4 +192,5 @@ Container.propTypes = {
     ]),
     type: PropTypes.oneOf([SCROLL, LIST]),
     bgColor: PropTypes.string,
+    height: PropTypes.number,
 };

@@ -13,6 +13,12 @@ import { size } from '../utils';
 
 export default class Icon extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.theme = (this.props.theme) ? this.props.theme : 'light';
+    }
+
     componentWillMount() {
         switch(this.props.family) {
             case 'Ionicons':
@@ -42,7 +48,7 @@ export default class Icon extends Component {
     }
 
     render() {
-        const color = {color: this.props.color ? this.props.color : theme[this.props.theme].buttonColor};
+        const color = {color: this.props.color ? this.props.color : theme[this.theme].buttonColor};
         return(
             <this.Icon
                 name={this.props.name}
