@@ -42,7 +42,8 @@ export default class Container extends Component {
                 <View key="loading" style={[
                     styles.loadingContainer.view,
                     { backgroundColor: this.props.loading.bgColor || color.bgLoadingColor },
-                    this.props.loading.styleContainer
+                    this.props.loading.styleContainer,
+                    this.props.loading.coverNavbar===false?styles.loadingContainer.spinnerNotCover:{}
                 ]}>
                     <View style={styles.loadingContainer.spinner}>
                         <Spinner
@@ -176,6 +177,7 @@ export default class Container extends Component {
         messageColor: PropTypes.string,
         styleContainer: PropTypes.object,
         styleText: PropTypes.object,
+        coverNavbar:PropTypes.bool,
     };
 
     static arrayOfObjects = PropTypes.arrayOf(PropTypes.object);
