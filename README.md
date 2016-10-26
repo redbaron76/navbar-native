@@ -224,6 +224,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **style** - (Object opt.) - Button's override styles
 - **style** - (Object) - Custom styles for the navbar
 - **user** - (Object, Bool) - Authenticated user
+- **elevation** - (Number) - (Android-only) Elevation of the toolbar
 
 ### Icon API
 - **family** - (String def. 'Ionicons') - Font family for icons
