@@ -6,7 +6,7 @@ export default navbarStyles = {
         position: 'relative',
     },
     contentContainer: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: color.bgContentColor,
     },
     contentAbsolute: {
@@ -101,10 +101,6 @@ export default navbarStyles = {
     iconStyle: {
         marginTop: size.iconStyle.marginTop,
         backgroundColor: 'transparent',
-    },
-    imageTitle: {
-        width: size.navBarHeight,
-        height: size.navBarHeight,
     },
     imageBackground: {
         position: 'absolute',

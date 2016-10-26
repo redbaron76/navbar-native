@@ -32,6 +32,10 @@ This package exports two main components:
 - **Container** - a container component to use as the first component in a __render()__ method. It accepts the "Navbar" component and the rest of the page content.
 - **Navbar** - the components which generates the bar on top.
 
+### Helper components
+
+- **Icon** - a Vector Icons for React Native wrapper
+
 ### Getting started
 Basically, the Navbar component accepts a **title** prop and **left** and/or **right** objects (or array of objects) which describe each button that the navbar has to render in the specific position.
 
@@ -185,6 +189,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **styleContainer** - (Object opt.) - Additional style for the loading screen
   - **styleText** - (Object opt.) - Additional style for the loading text
 - **type** - ('scroll' or 'list' def. 'scroll') - How to render Container children content
+- **height** - (Number def. screen height) - Set the height of the container
 
 ### Navbar API
 - **theme** - ('light' or 'dark' - def. 'light' iOS / 'dark' Android) - Base theme for the NavigationBar
@@ -207,7 +212,7 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **bgColor** - (String) - StatusBar background color
   - **animation** - (Boolean def. true) - Animation between StatusBar transitions
   - **transition** - ('fade' or 'slide' def. 'fade') - Type of StatusBar transition animation when hiding it
-- **left / right** - (Object or Array of Objects):
+- **left / right** - (Object or Array of Objects or React component / return function):
   - **icon** - (String opt.) - Vector Icon's icon name
   - **iconFamily** - (String def. Ionicons) - Vector Icon's icon library
   - **iconPos** - ('left' or 'right' def. left/right position) - Icon's position towards the label
@@ -219,6 +224,11 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **style** - (Object opt.) - Button's override styles
 - **style** - (Object) - Custom styles for the navbar
 - **user** - (Object, Bool) - Authenticated user
+
+### Icon API
+- **family** - (String def. 'Ionicons') - Font family for icons
+- **name** - (String) - Name of the icon to show
+- **color** - (String def. iOS '#387afe' android '#707070') - Color of the icon
 
 ### Demo
 
