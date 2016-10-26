@@ -55,8 +55,9 @@ export default class Container extends Component {
                     </View>
                 </View>
             );
+        }else{
+            return <View key="loading"/>
         }
-        return null;
     }
 
     renderNavbar() {
