@@ -292,7 +292,7 @@ export default class Navbar extends Component {
         const renderTitle = isIOS() ? this.renderTitle() : null;
         const bgColor = { backgroundColor: this.props.bgColor ? this.props.bgColor : theme[this.theme].bgNavbarColor };
         return (
-            <View style={[styles.navBarContainer, bgColor]}>
+            <View style={[styles.navBarContainer, bgColor]} elevation={this.props.elevation}>
                 {this.renderStatusBar()}
                 {this.renderBackgroundImage()}
                 <View style={[styles.navBar, this.props.style]}>
