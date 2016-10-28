@@ -52,11 +52,12 @@ export default class Button extends Component {
 
     render() {
         if (!this.hasIcon && !this.hasLabel) return null;
+        const disabled = this.props.disabled ? styles.navBarButtonDisabled : {};
         const buttonElements = this.renderButtonElements();
         return (
             <TouchableOpacity
                 onPress={this.props.onPress}
-                style={[this._setButtonMargins(), styles.navBarButton]}
+                style={[this._setButtonMargins(), styles.navBarButton, disabled]}
             >
                 {buttonElements}
             </TouchableOpacity>
@@ -162,6 +163,7 @@ export default class Button extends Component {
         btnLeft: PropTypes.bool,
         btnRight: PropTypes.bool,
         onPress: PropTypes.func,
+        disabled: PropTypes.bool,
         theme: PropTypes.string,
         customStyle: PropTypes.object,
     };

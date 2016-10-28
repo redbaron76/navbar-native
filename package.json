@@ -1,6 +1,6 @@
 {
   "name": "navbar-native",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "a fully customizable navbar component for React-Native that works for both iOS and Android",
   "main": "index.js",
   "scripts": {

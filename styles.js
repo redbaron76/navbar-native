@@ -58,6 +58,9 @@ export default navbarStyles = {
         flexDirection: 'row',
         alignItems: 'stretch',
     },
+    navBarButtonDisabled: {
+        opacity: .8
+    },
     navBarButtonText: {
         fontSize: 17,
         fontFamily: font.buttonText,
@@ -126,7 +129,7 @@ export default navbarStyles = {
             alignItems: 'center',
         },
         spinnerNotCover: {
-            marginTop:iOS(size.navBarHeight+size.statusBarHeight,size.navBarHeight),
+            marginTop: iOS(size.navBarHeight + size.statusBarHeight, size.navBarHeight),
         },
         text: {
             marginTop: 10,

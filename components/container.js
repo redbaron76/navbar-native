@@ -43,7 +43,7 @@ export default class Container extends Component {
                     styles.loadingContainer.view,
                     { backgroundColor: this.props.loading.bgColor || color.bgLoadingColor },
                     this.props.loading.styleContainer,
-                    this.props.loading.coverNavbar===false?styles.loadingContainer.spinnerNotCover:{}
+                    this.props.loading.coverNavbar === false ? styles.loadingContainer.spinnerNotCover : {}
                 ]}>
                     <View style={styles.loadingContainer.spinner}>
                         <Spinner

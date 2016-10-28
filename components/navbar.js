@@ -32,6 +32,8 @@ export default class Navbar extends Component {
 
     _managePress(props) {
         switch (true) {
+            case (props.disabled):
+                return null;
             case (props.role == LOGIN):
                 switch (true) {
                     case (!!this.props.user):
@@ -211,6 +213,7 @@ export default class Navbar extends Component {
                         customStyle={props.style}
                         iconPos={props.iconPos}
                         iconStyle={[props.iconStyle]}
+                        disabled={this.props.disabled || false}
                         onPress={this._managePress(props)}
                     >
                         {this.renderIcon(props, icon1_1, icon1_2)}
@@ -322,6 +325,7 @@ export default class Navbar extends Component {
         iconColor: PropTypes.string,
         label: PropTypes.string,
         onPress: PropTypes.func,
+        disabled: PropTypes.bool,
         role: PropTypes.oneOf([BACK, CLOSE, LOGIN, MENU]),
         style: PropTypes.object,
     };
