@@ -1,10 +1,14 @@
 {
   "name": "navbar-native",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "a fully customizable navbar component for React-Native that works for both iOS and Android",
   "main": "index.js",
   "scripts": {
     "test": "test"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/redbaron76/navbar-native.git"
   },
   "keywords": [
     "react",
