@@ -213,7 +213,7 @@ export default class Navbar extends Component {
                         customStyle={props.style}
                         iconPos={props.iconPos}
                         iconStyle={[props.iconStyle]}
-                        disabled={this.props.disabled || false}
+                        disabled={props.disabled || false}
                         onPress={this._managePress(props)}
                     >
                         {this.renderIcon(props, icon1_1, icon1_2)}
