@@ -8,6 +8,7 @@ import { color, size } from '../utils';
 
 const SCROLL = 'scroll';
 const LIST = 'list';
+const PLAIN = 'plain';
 
 export default class Container extends Component {
 
@@ -41,7 +42,8 @@ export default class Container extends Component {
                 <View key="loading" style={[
                     styles.loadingContainer.view,
                     { backgroundColor: this.props.loading.bgColor || color.bgLoadingColor },
-                    this.props.loading.styleContainer
+                    this.props.loading.styleContainer,
+                    this.props.loading.coverNavbar===false?styles.loadingContainer.spinnerNotCover:{}
                 ]}>
                     <View style={styles.loadingContainer.spinner}>
                         <Spinner
@@ -53,8 +55,9 @@ export default class Container extends Component {
                     </View>
                 </View>
             );
+        }else{
+            return <View key="loading"/>
         }
-        return null;
     }
 
     renderNavbar() {
@@ -99,17 +102,27 @@ export default class Container extends Component {
                 return (
                     <ListView
                         {...this.props}
+                        ref={this.props.contentRef}
                         dataSource={this._getDataSource()}
                         renderRow={this.props.row || this.defaultListRow}
                     >
                         {children}
                     </ListView>
                 );
+            case (this.props.type == PLAIN):
+                return (
+                    <View
+                        {...this.props}
+                    >
+                        {children}
+                    </View>
+                );
             case (this.props.type == SCROLL):
             default:
                 return (
                     <KeyboardAwareScrollView
                         style={{height: height}}
+                        ref={this.props.contentRef}
                         contentContainerStyle={{minHeight: height}}
                         resetScrollToCoords={{x:0,y:0}}
                         contentInset={{bottom: 0}}
@@ -163,6 +176,7 @@ export default class Container extends Component {
 
     static SCROLL = SCROLL;
     static LIST = LIST;
+    static PLAIN = PLAIN;
 
     static loadingShape = {
         spinner: PropTypes.string,
@@ -173,6 +187,7 @@ export default class Container extends Component {
         messageColor: PropTypes.string,
         styleContainer: PropTypes.object,
         styleText: PropTypes.object,
+        coverNavbar:PropTypes.bool,
     };
 
     static arrayOfObjects = PropTypes.arrayOf(PropTypes.object);
@@ -184,13 +199,14 @@ Container.propTypes = {
         Container.arrayOfStrings,
         Container.arrayOfObjects,
     ]),
-    row: PropTypes.element,
+    row: PropTypes.func,
+    contentRef:PropTypes.func,
     style: PropTypes.object,
     loading: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.shape(Container.loadingShape),
     ]),
-    type: PropTypes.oneOf([SCROLL, LIST]),
+    type: PropTypes.oneOf([SCROLL, LIST,PLAIN]),
     bgColor: PropTypes.string,
     height: PropTypes.number,
 };

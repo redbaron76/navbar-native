@@ -1,4 +1,4 @@
-import { color, size, font, theme } from './utils';
+import { color, size, font, theme,iOS } from './utils';
 
 export default navbarStyles = {
     mainContainer: {
@@ -124,6 +124,9 @@ export default navbarStyles = {
         },
         spinner: {
             alignItems: 'center',
+        },
+        spinnerNotCover: {
+            marginTop:iOS(size.navBarHeight+size.statusBarHeight,size.navBarHeight),
         },
         text: {
             marginTop: 10,
