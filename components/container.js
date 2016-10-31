@@ -67,6 +67,7 @@ export default class Container extends Component {
                 this.hasNavbar = true;
                 if (child.props.bgColor == 'transparent') {
                     this.navbarTransparent = true;
+                    this.hasNavbar = false;
                 }
                 return child;
             }
