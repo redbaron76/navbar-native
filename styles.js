@@ -6,7 +6,6 @@ export default navbarStyles = {
         position: 'relative',
     },
     contentContainer: {
-        // flex: 1,
         backgroundColor: color.bgContentColor,
     },
     contentAbsolute: {

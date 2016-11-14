@@ -18,6 +18,7 @@ export default class Container extends Component {
         const { height } = Dimensions.get('window');
         this.windowHeight = height;
         this.navbarHeight = height - (size.navBarHeight + size.statusBarHeight);
+        this.hasStatusbar = true;
         this.hasNavbar = false;
     }
 
@@ -69,6 +70,9 @@ export default class Container extends Component {
                     this.navbarTransparent = true;
                     this.hasNavbar = false;
                 }
+                if (child.props.statusBar && child.props.statusBar.hidden) {
+                    this.hasStatusbar = false;
+                }
                 return child;
             }
         });
@@ -93,6 +97,10 @@ export default class Container extends Component {
     renderContentType(children) {
 
         let height = (this.hasNavbar) ? this.navbarHeight : this.windowHeight;
+
+        if (!this.hasStatusbar) {
+            height = height + size.statusBarHeight;
+        }
 
         if (this.props.height) {
             height = this.props.height;
