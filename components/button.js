@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-
+import Navbar from './navbar';
 import styles, { theme } from '../styles';
 
 const MARGIN = 4;
@@ -50,6 +50,47 @@ export default class Button extends Component {
         }
     }
 
+    renderBadge() {
+        if (
+            (typeof this.props.badge === 'string' && !!this.props.badge) ||
+            (typeof this.props.badge === 'number' && !!this.props.badge) ||
+            (typeof this.props.badge === 'object' && !!this.props.badge.value)
+        ) {
+
+            let value = this.props.badge;
+            let badgeBgColor = theme[this.props.theme].badgeBgColor;
+            let badgeTextColor = theme[this.props.theme].badgeTextColor;
+
+            let position = {};
+            position[Navbar.RIGHT] = -7;
+
+            if (typeof this.props.badge === 'object') {
+                value = this.props.badge.value;
+                if (this.props.badge.bgColor) badgeBgColor = this.props.badge.bgColor;
+                if (this.props.badge.textColor) badgeTextColor = this.props.badge.textColor;
+                if (this.props.badge.position == Navbar.LEFT) {
+                    delete(position[Navbar.RIGHT]);
+                    position[Navbar.LEFT] = -7;
+                }
+            }
+
+            return (
+                <View style={[
+                    styles.buttonBadgeContainer,
+                    { backgroundColor: badgeBgColor },
+                    position
+                ]}>
+                    <Text style={[
+                        styles.buttonBadge,
+                        { color: badgeTextColor }
+                    ]}>
+                        {value}
+                    </Text>
+                </View>
+            );
+        }
+    }
+
     render() {
         if (!this.hasIcon && !this.hasLabel) return null;
         const disabled = this.props.disabled ? styles.navBarButtonDisabled : {};
@@ -60,6 +101,7 @@ export default class Button extends Component {
                 style={[this._setButtonMargins(), styles.navBarButton, disabled]}
             >
                 {buttonElements}
+                {this.renderBadge()}
             </TouchableOpacity>
         );
     }
@@ -166,5 +208,10 @@ export default class Button extends Component {
         disabled: PropTypes.bool,
         theme: PropTypes.string,
         customStyle: PropTypes.object,
+        badge: PropTypes.oneOfType([
+            PropTypes.object,
+            PropTypes.number,
+            PropTypes.string
+        ]),
     };
 };

@@ -67,6 +67,8 @@ export const theme = {
         bgNavbarColor: iOS('#f2f2f2', '#f5f5f5'),
         buttonColor: iOS('#387afe', '#707070'),
         titleColor: iOS('#000000', '#000000'),
+        badgeBgColor: iOS('#2b2b2b', '#212121'),
+        badgeTextColor: iOS('#f2f2f2', '#f5f5f5'),
         statusBar: iOS({
             style: 'default'
         }, {
@@ -77,6 +79,8 @@ export const theme = {
         bgNavbarColor: iOS('#2b2b2b', '#212121'),
         buttonColor: iOS('#ffffff', '#ffffff'),
         titleColor: iOS('#ffffff', '#ffffff'),
+        badgeBgColor: iOS('#f2f2f2', '#f5f5f5'),
+        badgeTextColor: iOS('#2b2b2b', '#212121'),
         statusBar: iOS({
             style: 'light-content'
         }, {

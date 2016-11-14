@@ -55,6 +55,7 @@ export default navbarStyles = {
         alignItems: 'center',
     },
     navBarButton: {
+        position: 'relative',
         flexDirection: 'row',
         alignItems: 'stretch',
     },
@@ -136,7 +137,24 @@ export default navbarStyles = {
             color: color.white,
             fontSize: 20,
         }
-    }
+    },
+    buttonBadgeContainer: {
+        position: 'absolute',
+        top: 5,
+
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 2,
+        borderRadius: 10,
+        height: 20,
+        width: 20,
+    },
+    buttonBadge: {
+        fontSize: 13,
+        textAlign: 'center',
+        backgroundColor: 'transparent'
+    },
 };
 
 export { theme, size };

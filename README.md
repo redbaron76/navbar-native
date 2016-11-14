@@ -219,6 +219,11 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
   - **iconSize** - (Number def. 30 ios - 28 android) - Icon's size
   - **iconColor** - (String def. light: ios #387afe android #707070 dark: ios #ffffff android #ffffff ) - Icon's color
   - **label** - (String opt.) - Button's label
+  - **badge** - (Number, String or Object opt.)
+    - **value** - (Number or String) - The value in the badge
+    - **bgColor** - (String opt.) - Badge background color
+    - **textColor** - (String opt.) - Badge text color
+    - **position** - ('left' or 'right' def. 'right') - Badge position in the button
   - **onPress** - (Function) - onPress function handler
   - **disabled** - (Boolean def. false) - It renders a button in a disabled status
   - **role** - (String opt. - 'back' | 'close' | 'login' | 'menu') - Button's pre-defined aspect

@@ -18,6 +18,9 @@ const NONE = 'none';
 const DARK = 'dark';
 const LIGHT = 'light';
 
+const LEFT = 'left';
+const RIGHT = 'right';
+
 export default class Navbar extends Component {
 
     constructor(props) {
@@ -198,6 +201,22 @@ export default class Navbar extends Component {
         }
     }
 
+    renderBadge(props) {
+        if (props.badge) {
+            return (
+                <View style={[
+                    styles.navBarButtonBadgeContainer
+                ]}>
+                    <Text style={[
+                        styles.navBarButtonBadge
+                    ]}>
+                        {props.badge}
+                    </Text>
+                </View>
+            );
+        }
+    }
+
     renderButton(props, icon1_1, icon1_2, icon2_1, icon2_2, i = 0) {
         switch (true) {
             case (React.isValidElement(props)):
@@ -215,6 +234,7 @@ export default class Navbar extends Component {
                         iconStyle={[props.iconStyle]}
                         disabled={props.disabled || false}
                         onPress={this._managePress(props)}
+                        badge={props.badge}
                     >
                         {this.renderIcon(props, icon1_1, icon1_2)}
                         {this.renderLabel(props)}
@@ -317,6 +337,13 @@ export default class Navbar extends Component {
         showAnimation: PropTypes.oneOf([FADE, SLIDE, NONE, ]),
     };
 
+    static badgeShape = {
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        bgColor: PropTypes.string,
+        textColor: PropTypes.string,
+        position: PropTypes.oneOf([LEFT, RIGHT, ]),
+    };
+
     static buttonPropTypes = {
         icon: PropTypes.string,
         iconFamily: PropTypes.string,
@@ -324,6 +351,11 @@ export default class Navbar extends Component {
         iconSize: PropTypes.number,
         iconColor: PropTypes.string,
         label: PropTypes.string,
+        badge: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+            PropTypes.shape(Navbar.badgeShape)
+        ]),
         onPress: PropTypes.func,
         disabled: PropTypes.bool,
         role: PropTypes.oneOf([BACK, CLOSE, LOGIN, MENU]),
@@ -359,6 +391,8 @@ export default class Navbar extends Component {
     static FADE = FADE;
     static SLIDE = SLIDE;
     static NONE = NONE;
+    static LEFT = LEFT;
+    static RIGHT = RIGHT;
 }
 
 const buttonShape = PropTypes.shape(Navbar.buttonPropTypes);
