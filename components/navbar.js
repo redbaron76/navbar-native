@@ -45,16 +45,11 @@ export default class Navbar extends Component {
                         return props.onPress;
                 }
             case (props.role == MENU):
-                switch (true) {
-                    case (!!this.props.user):
-                        return props.onPress;
-                    default:
-                        return null;
-                }
+                return props.onPress;
             case (props.role == BACK):
-                return props.onPress/* || Actions.pop*/;
+                return props.onPress;
             case (props.role == CLOSE):
-                return props.onPress/* || Actions.pop*/;
+                return props.onPress;
             default:
                 return props.onPress;
         }
@@ -63,11 +58,11 @@ export default class Navbar extends Component {
     _manageJustifyContentContainer() {
         switch (true) {
             case (this.hasBothBtn):
-                return { justifyContent : 'space-between' }
+                return { justifyContent : 'space-between' };
             case (this.hasLeftBtn):
-                return { justifyContent : 'flex-start' }
+                return { justifyContent : 'flex-start' };
             case (this.hasRightBtn):
-                return { justifyContent : 'flex-end' }
+                return { justifyContent : 'flex-end' };
         }
     }
 
@@ -77,6 +72,8 @@ export default class Navbar extends Component {
         { backgroundColor: this.props.statusBar.bgColor } : null;
 
         switch (true) {
+            case (!!this.props.statusBar.hidden):
+                return <StatusBar hidden={true} />;
             case (isIOS() && !this.props.statusBar.hidden):
                 const statusBarStyle = { barStyle: (this.props.statusBar && this.props.statusBar.style) ?
                     this.props.statusBar.style : theme[this.theme].statusBar.style }
@@ -95,7 +92,7 @@ export default class Navbar extends Component {
                 const androidStatusBar = Object.assign({}, Navbar.defaultProps.statusBar.android, bgStatusBarColor);
                 return <StatusBar {...androidStatusBar}/>;
             default:
-                return null;
+                return <StatusBar />;
         }
     }
 
@@ -153,13 +150,8 @@ export default class Navbar extends Component {
             const family = (props.iconFamily) ? props.iconFamily : 'Ionicons';
             switch (true) {
                 case (props.role == MENU):
-                    switch (true) {
-                        case (!!this.props.user):
-                            const icon = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'menu');
-                            return <Icon name={icon} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
-                        default:
-                            return null;
-                    }
+                    const icon = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'menu');
+                    return <Icon name={icon} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;
                 case (props.role == CLOSE):
                     const iconClose = (props.icon) ? fixIconName(props.icon) : iconName(this.iconPrefix, 'close');
                     return <Icon name={iconClose} family={family} color={props.iconColor} theme={this.theme} size={props.iconSize} />;

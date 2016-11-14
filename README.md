@@ -174,6 +174,32 @@ Just set `bgColor="transparent"` and `theme="dark"` and you can achieve somethin
 
 ![transparent_navbar](https://cloud.githubusercontent.com/assets/1061849/18752282/39d75436-80e2-11e6-86a5-92c848446a6d.png)
 
+### Using badges
+
+![ios-badge](https://cloud.githubusercontent.com/assets/1061849/20268744/bd13b304-aa80-11e6-8628-73c49b6a9755.png)
+
+```js
+export default class ReactNativeEmpty extends Component {
+    render() {
+
+        const left = {
+            role: 'menu',
+            badge: {
+                value: 4,
+                bgColor: '#ffcc00',
+                textColor: 'black'
+            }
+        };
+
+        return (
+            <Container>
+                <Navbar left={left} title={"Title"} />
+            </Container>
+        );
+    }
+}
+```
+
 ### Container API
 - **bgColor** - (String def. '#ffffff') - Background color for the Container, the one you see overscrolling
 - **data** - (Array of strings or Array of Objects opt.) - data source for ListView
