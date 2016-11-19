@@ -153,12 +153,10 @@ export default class Container extends Component {
             Object.assign(
                 {},
                 styles.contentContainer,
-                styles.contentAbsolute,
-                {backgroundColor: 'transparent'})
+                styles.contentAbsolute)
             : Object.assign(
             {},
-            styles.contentContainer,
-            {backgroundColor: this.props.bgColor}
+            styles.contentContainer
         );
 
         let contentHeight = {};
@@ -167,7 +165,7 @@ export default class Container extends Component {
         }
 
         return (
-            <View style={[contentStyle, contentHeight]}>
+            <View style={[contentStyle, contentHeight, {backgroundColor: this.props.bgColor}]}>
                 {this.renderContentType(children)}
             </View>
         );

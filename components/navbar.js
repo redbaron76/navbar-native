@@ -346,7 +346,7 @@ export default class Navbar extends Component {
         badge: PropTypes.oneOfType([
             PropTypes.number,
             PropTypes.string,
-            PropTypes.shape(Navbar.badgeShape)
+            PropTypes.shape(this.badgeShape)
         ]),
         onPress: PropTypes.func,
         disabled: PropTypes.bool,
