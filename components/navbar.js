@@ -29,8 +29,8 @@ export default class Navbar extends Component {
         this.hasLeftBtn = !!props.left;
         this.hasRightBtn = !!props.right;
         this.hasBothBtn = this.hasLeftBtn && this.hasRightBtn;
-        this.iconPrefix = isIOS() ? 'ios' : 'md';
         this.theme = !!props.theme ? props.theme : isIOS() ? LIGHT : DARK;
+        this.iconPrefix = isIOS() ? 'ios' : 'md';
     }
 
     _managePress(props) {

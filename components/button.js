@@ -12,8 +12,6 @@ export default class Button extends Component {
 
         this.hasIcon = false;
         this.hasLabel = false;
-
-        this._computeIconLabel();
     }
 
     renderButtonElements() {
@@ -92,6 +90,7 @@ export default class Button extends Component {
     }
 
     render() {
+        this._computeIconLabel();
         if (!this.hasIcon && !this.hasLabel) return null;
         const disabled = this.props.disabled ? styles.navBarButtonDisabled : {};
         const buttonElements = this.renderButtonElements();
@@ -104,6 +103,14 @@ export default class Button extends Component {
                 {this.renderBadge()}
             </TouchableOpacity>
         );
+    }
+
+    _computeIconLabel() {
+        if (Array.isArray(this.props.children)) {
+            const child = this.props.children;
+            if (child[0] || child[2]) this.hasIcon = true;
+            if (child[1]) this.hasLabel = true;
+        }
     }
 
     _setButtonMargins() {
@@ -182,14 +189,6 @@ export default class Button extends Component {
                     marginLeft: 0,
                     marginRight: 0,
                 }
-        }
-    }
-
-    _computeIconLabel() {
-        if (Array.isArray(this.props.children)) {
-            const child = this.props.children;
-            if (child[0] || child[2]) this.hasIcon = true;
-            if (child[1]) this.hasLabel = true;
         }
     }
 
