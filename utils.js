@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 export function iOS(a, b) {
     return Platform.OS == 'ios' ? a : b;
@@ -45,6 +45,9 @@ export const size = {
 
     navBarHeight: 44,
     statusBarHeight: 20,
+
+    screenWidth: Dimensions.get('window').width,
+    screenHeight: Dimensions.get('window').height,
 };
 
 export const font = {
@@ -54,7 +57,7 @@ export const font = {
 
 export const color = {
     bgNavbarColor: iOS('#f2f2f2', '#212121'),
-    bgContentColor: iOS('#ffffff', '#303030'),
+    bgContentColor: iOS('#000000', '#303030'),
     bgLoadingColor: iOS('rgba(0,0,0,.8)','rgba(0,0,0,.8)'),
     buttonColor: iOS('#387afe', '#ffffff'),
     titleColor: iOS('#000000', '#ffffff'),

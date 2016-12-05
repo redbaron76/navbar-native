@@ -225,7 +225,7 @@ export default class ReactNativeEmpty extends Component {
 - **image** - (Object opt.) - Local/remote image instead of the title
   - **source** - (require(String) for local or String for remote uri) - Local/remote image location
   - **type** - ('local' or 'remote' def. 'local') - Origin of the image
-  - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover')
+  - **resizeMode** - ('cover', 'contain', 'stretch', 'repeat', 'center' def. 'cover' local - 'contain' remote)
   - **style** - (Object opt.) - Additional styles for image title
 - **imageBackground** - (Object opt.) - Local/remote image in navbar background
   - **source** - (String) - Local/remote image location

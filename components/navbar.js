@@ -29,8 +29,8 @@ export default class Navbar extends Component {
         this.hasLeftBtn = !!props.left;
         this.hasRightBtn = !!props.right;
         this.hasBothBtn = this.hasLeftBtn && this.hasRightBtn;
-        this.theme = !!props.theme ? props.theme : isIOS() ? LIGHT : DARK;
         this.iconPrefix = isIOS() ? 'ios' : 'md';
+        this.theme = !!props.theme ? props.theme : isIOS() ? LIGHT : DARK;
     }
 
     _managePress(props) {
@@ -69,7 +69,7 @@ export default class Navbar extends Component {
     renderStatusBar() {
 
         const customStatusBarBgColor = this.props.statusBar.bgColor ?
-        { backgroundColor: this.props.statusBar.bgColor } : null;
+            { backgroundColor: this.props.statusBar.bgColor } : null;
 
         switch (true) {
             case (!!this.props.statusBar.hidden):
@@ -88,7 +88,7 @@ export default class Navbar extends Component {
                 </View>;
             case (!isIOS() && !this.props.statusBar.hidden):
                 const bgStatusBarColor = this.props.statusBar.bgColor ?
-                { backgroundColor: this.props.statusBar.bgColor } : theme[this.theme].statusBar;
+                    { backgroundColor: this.props.statusBar.bgColor } : theme[this.theme].statusBar;
                 const androidStatusBar = Object.assign({}, Navbar.defaultProps.statusBar.android, bgStatusBarColor);
                 return <StatusBar {...androidStatusBar}/>;
             default:
@@ -106,11 +106,37 @@ export default class Navbar extends Component {
         }
     }
 
+    _getImageResizeMode(prop) {
+        switch (true) {
+            case (!!prop.resizeMode):
+                return prop.resizeMode;
+            case (prop.type == 'local'):
+                return 'cover';
+            case (prop.type == 'remote'):
+            default:
+                return 'contain';
+        }
+    }
+
+    _getImageStyle(prop) {
+        switch (true) {
+            case (prop.type == 'remote'):
+                return Object.assign({}, {
+                    width: size.screenWidth,
+                    height: size.navBarHeight
+                }, prop.style);
+            case (prop.type == 'local'):
+            default:
+                return Object.assign({}, prop.style);
+        }
+    }
+
     renderImage() {
+
         const image = <Image
             source={this._getImageTitleSource(this.props.image)}
-            resizeMode={this.props.image.resizeMode || 'cover'}
-            style={this.props.image.style}
+            resizeMode={this._getImageResizeMode(this.props.image)}
+            style={this._getImageStyle(this.props.image)}
         />;
 
         switch (true) {
@@ -346,7 +372,7 @@ export default class Navbar extends Component {
         badge: PropTypes.oneOfType([
             PropTypes.number,
             PropTypes.string,
-            PropTypes.shape(this.badgeShape)
+            PropTypes.shape(Navbar.badgeShape)
         ]),
         onPress: PropTypes.func,
         disabled: PropTypes.bool,
