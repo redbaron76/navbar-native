@@ -92,7 +92,8 @@ class ReactNativeEmpty extends Component {
                     image={{
                         source:'https://facebook.github.io/react/img/logo_og.png',
                         type: 'remote',
-                        resizeMode: 'cover'
+                        resizeMode: 'cover',
+                        style: {width: 50, height: 44}
                     }}
                     statusBar={{
                         style: "default",
