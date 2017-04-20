@@ -1,6 +1,6 @@
 {
   "name": "navbar-native",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "a fully customizable navbar component for React-Native that works for both iOS and Android",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,8 @@
   ],
   "dependencies": {
     "react-native-keyboard-aware-scroll-view": "^0.2.1",
-    "react-native-vector-icons": "~2.1.0",
-    "react-native-spinkit": "~0.1.3"
+    "react-native-vector-icons": "~4.0.0",
+    "react-native-spinkit": "~1.0.1"
   },
   "author": "Fabio Fumis <f.fumis@gmail.com> (https://github.com/redbaron76)",
   "license": "MIT"
