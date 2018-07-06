@@ -16,9 +16,10 @@
     "navbar"
   ],
   "dependencies": {
-    "react-native-keyboard-aware-scroll-view": "^0.2.1",
-    "react-native-vector-icons": "~4.0.0",
-    "react-native-spinkit": "~1.0.1"
+    "prop-types": "^15.6.2",
+    "react-native-keyboard-aware-scroll-view": "^0.6.0",
+    "react-native-vector-icons": "~4.6.0",
+    "react-native-spinkit": "~1.1.1"
   },
   "author": "Fabio Fumis <f.fumis@gmail.com> (https://github.com/redbaron76)",
   "license": "MIT"
