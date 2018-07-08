@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, Text, View, Platform, StatusBar } from 'react-native';
 
 import Icon from './icon';
@@ -372,7 +373,7 @@ export default class Navbar extends Component {
         badge: PropTypes.oneOfType([
             PropTypes.number,
             PropTypes.string,
-            PropTypes.shape(Navbar.badgeShape)
+            PropTypes.shape(this.badgeShape)
         ]),
         onPress: PropTypes.func,
         disabled: PropTypes.bool,
